@@ -1,0 +1,98 @@
+@import "src/mixins";
+.header{
+  display: none;
+  @include breakpoint-up(large){
+    display: block;
+  }
+}
+.info-main{
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  .info-slidebar{
+    display: none;
+    width: 20%;
+    flex-shrink: 0;
+    @include breakpoint-up(large){
+      display: block;
+    }
+    .info-title{
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid #efefef;
+      .avatar-user{
+        width: 50px;
+        height: 50px;
+        background: #04AA6D;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .user-name{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 15px;
+        overflow: hidden;
+        .username{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          min-height: 1rem;
+          font-weight: 600;
+          margin-bottom: 5px;
+          color: #333;
+        }
+        .link-account{
+          color: #888;
+          text-transform: capitalize;
+          text-decoration: none;
+        }
+      }
+
+    }
+    .status-dropdown{
+      position: relative;
+      line-height: 16.8px;
+      display: block;
+      color: rgba(0,0,0,0.87);
+      margin-bottom: 5px;
+      margin-top: 10px;
+      .order-info-link{
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        margin-bottom: 0.9375rem;
+        color: rgba(0,0,0,0.87);
+        .order-icon{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 0.625rem;
+          margin-left: 27px;
+        }
+        .order-text{
+          line-height: 1rem;
+          text-transform: capitalize;
+          color: rgba(0,0,0,0.87);
+        }
+        .order-text:hover {
+          color: #EE4D2D!important;
+        }
+
+
+      }
+    }
+
+  }
+  .content{
+    width: 100%;
+    @include breakpoint-up(large){
+      width: 80%;
+    }
+  }
+}

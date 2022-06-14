@@ -1,0 +1,106 @@
+<div class="danh_sach_danh_muc">
+  <div >
+    <p-button label="Tạo danh mục" (click)="createCategory()"></p-button>
+  </div>
+  <div class="list-cate">
+    <div class="cate-item" *ngFor="let category of categories">
+      <span>{{category.categoryName}}</span>
+      <i class="pi pi-user-edit" (click)="editCategory(category)" style="margin-left: 10px; font-size: 1.5rem"></i>
+      <i class="pi pi-trash" (click)="deleteCategory(category.categoryId)" style="margin-left: 10px; margin-right: 10px; font-size: 1.5rem"></i>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="dialogCategory" [header]="header" [modal]="true" [closable]="close">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="p-grid p-fluid" >
+      <div class="p-field p-lg-6 f-div">
+        <label for="categoryName">Tên danh mục</label>
+        <input type="text" pInputText
+               formControlName="categoryName"
+               inputId="name"
+               [ngClass]="{'is-invalid': submitted && f['categoryName'].errors}"/>
+        <div *ngIf="submitted && f['categoryName'].errors" class="alert-danger">
+          <div *ngIf="f['categoryName'].errors['required']">Name is required</div>
+          <div *ngIf="f['categoryName'].errors['minlength']">Name must be at least 5 characters</div>
+          <div *ngIf="f['categoryName'].errors['maxlength']">Name mus be at most 50 characters</div>
+        </div>
+
+      </div>
+      <div class="p-field p-lg-6 f-div">
+        <label for="categoryParent">Danh mục cha</label>
+        <p-dropdown formControlName="categoryParent"
+                    [options]="categoryParents"
+                    optionLabel="categoryName"
+                    placeholder="Select category parent"
+                    [ngClass]="{'is-invalid': submitted && f['categoryParent'].errors}">
+
+        </p-dropdown>
+      </div>
+      <div class="p-field p-lg-12"><strong>SEO Propert</strong></div>
+      <br/>
+      <div class="p-field p-lg-12">
+        <label for="titleSeo">Title SEO</label>
+        <input pInputText  formControlName="titleSeo" inputId="titleSeo" placeholder="title seo">
+      </div>
+      <div class="p-field p-lg-12">
+        <div formArrayName="metaTags" *ngFor="let metaTagName of this.form.get('metaTags')!['controls']; let i = index">
+          <div class="p-field p-lg-2 f-div">
+            <a class="btn btn-primary" (click)="deleteTag($event,metaTagName, i)">
+              Xóa
+            </a>
+          </div>
+          <div [formGroupName]="i">
+            <div class="p-field f-div">
+              <p-dropdown [options]="properties" formControlName="property" inputId="property" placeholder="Select a tag" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="p-field f-div">
+              <input placeholder="content" pInputText formControlName="content" inputId="content">
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-primary" (click)="addTagPropery()">Thêm</a>
+      </div>
+      <div class="p-field p-lg-12"><strong>SEO Name</strong></div>
+      <br/>
+      <div class="p-field p-lg-12">
+        <div formArrayName="metaTagNames" *ngFor="let metaTagName of this.form.get('metaTagNames')!['controls']; let i = index">
+          <div class="p-field p-lg-2 f-div">
+            <a class="btn btn-primary" (click)="deleteTagName($event,metaTagName, i)">Xóa</a>
+          </div>
+          <div [formGroupName]="i">
+            <div class="p-field f-div">
+              <p-dropdown [options]="names" formControlName="name" placeholder="Select a tag" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="p-field f-div">
+              <input placeholder="content" pInputText formControlName="content">
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-primary" (click)="addTagName()">Thêm</a>
+      </div>
+      <div *ngIf="type === 'CREATE'">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button
+          class="btn btn-warning float-right"
+          style="margin-left: 20px"
+          (click)="onReset()"
+        >
+          Reset
+        </button>
+      </div>
+      <div *ngIf="type === 'EDIT'">
+        <button type="submit" class="btn btn-primary" >Lưu thay đổi</button>
+        <button
+          type="button"
+          class="btn btn-warning float-right"
+          style="margin-left: 20px"
+          (click)="cancel()"
+        >
+          Hủy
+        </button>
+      </div>
+
+    </div>
+  </form>
+</p-dialog>
+

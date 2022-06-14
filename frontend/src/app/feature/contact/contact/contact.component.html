@@ -1,0 +1,95 @@
+
+  <div class="bootstrap-wrapper main">
+    <div class="container-fluid">
+      <app-header></app-header>
+      <iframe [src]="infoShop.linkMap | safe" style="width: 100%; border: none; height: 300px"></iframe>
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1 col-12">
+          <div class="header-content">
+            <div class="title-shop">
+              Tpshop
+            </div>
+            <div class="content-shop">
+              Kinh doanh dụng cụ ngành tóc
+            </div>
+          </div>
+          <div class="center-contact">
+            <div class="contact">
+              <div class="action">
+                <button pButton pRipple type="button" icon="pi pi-map-marker icons" class="p-button-rounded p-button-success"></button>
+              </div>
+              <div class="info-text">
+                <span><strong>Address: </strong>{{infoShop.address}}</span>
+              </div>
+            </div>
+            <div class="contact">
+              <div class="action">
+                <button pButton pRipple type="button" icon="pi pi-phone icons" class="p-button-rounded p-button-success icons"></button>
+              </div>
+              <div class="info-text">
+                <span><strong>Phone: </strong>{{infoShop.phone}}</span>
+              </div>
+            </div>
+            <div class="contact">
+              <div class="action">
+                <button pButton pRipple type="button" icon="pi pi-envelope icons" class="p-button-rounded p-button-success icons"></button>
+              </div>
+              <div class="info-text">
+                <span><strong>Email: </strong>{{infoShop.gmail}}</span>
+              </div>
+            </div>
+            <div class="contact">
+              <div class="action">
+                <button pButton pRipple type="button" icon="pi pi-globe icons" class="p-button-rounded p-button-success icons"></button>
+              </div>
+              <div class="info-text">
+                <span><strong>Website: </strong>tpshop.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1 col-12">
+          <div class="contact-us">
+            <div class="main-img">
+              <div class="img">
+                <img src="../../../../assets/images/mail-sender.jpg" style="width: 100%; height: 100%; display: block">
+              </div>
+            </div>
+            <div class="form-mail">
+              <h1 style="font-size: 28px">Liên hệ với chúng tôi</h1>
+              <form>
+                <div class="form-group">
+                  <label for="name">Họ và tên</label>
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input type="text"  id="name" pInputText placeholder="Nhập tên của bạn"
+                           />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                    <input id="email" pInputText placeholder="Nhập email của bạn"
+                          />
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="content">Nội dung</label>
+                  <div class="p-inputgroup">
+                    <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+                  </div>
+                </div>
+                <button pButton pRipple type="submit" label="Gửi mail" class="p-button-rounded p-button-secondary"></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

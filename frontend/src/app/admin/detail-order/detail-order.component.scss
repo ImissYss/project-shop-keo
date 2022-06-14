@@ -1,0 +1,172 @@
+.info-address{
+  width: 100%;
+  background-color: #fff;
+  .info-flex{
+    padding: 20px 24px 24px;
+    .info-body{
+      display: flex;
+      flex-direction: row;
+      .address{
+        padding: 10px 24px 0 0;
+        line-height: 22px;
+        flex: 1;
+        .username{
+          margin: 0 0 7px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: rgba(0,0,0,0.8);
+        }
+        .detail-address{
+          color: rgba(0,0,0,0.54);
+          font-size: 12px;
+          white-space: pre-line;
+        }
+      }
+      .time-line{
+        width: 60%;
+        padding: 4px 0 0 24px;
+        border-left: 1px solid rgba(0,0,0,0.09);
+        display: flex;
+        flex-direction: column;
+        .inline-infor{
+          display: flex;
+          flex-direction: row;
+          .title{
+            color: rgba(0,0,0,0.8);
+            flex: 2;
+          }
+          .content{
+            color: rgba(0,0,0,0.54);
+            flex: 2;
+          }
+          .status-1{
+            background: #feedaf;
+            flex: 2;
+            color: #8a5340;
+            border-radius: 2px;
+            padding: .25em .5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: .3px;
+          }
+          .status-2{
+            background: #ffcdd2;
+            flex: 2;
+            color: #c63737;
+            border-radius: 2px;
+            padding: .25em .5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: .3px;
+          }
+          .status-0{
+            background-color: #b3e5fc;
+            color: #23547b;
+            flex: 2;
+            border-radius: 2px;
+            padding: .25em .5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: .3px;
+          }
+        }
+      }
+    }
+    .item-product{
+      width: 100%;
+      padding: 12px 24px;
+      background-color: #fafafa;
+      .link-prod{
+        display: flex;
+        flex-direction: row;
+        padding: 12px 0 0;
+        align-items: center;
+        flex-wrap: nowrap;
+        color: rgba(0,0,0,0.87);
+        text-decoration: none;
+        justify-content: space-between;
+        .info-prod{
+          display: flex;
+          flex-direction: row;
+          padding: 0 12px 0 0;
+          .detail-info{
+            padding: 0 0 0 12px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            align-items: flex-start;
+            .description{
+              font-size: 16px;
+              line-height: 22px;
+            }
+          }
+        }
+      }
+
+
+
+    }
+    .purchase{
+      background-color: #fafafa;
+      border-top: 1px solid rgba(0,0,0,.09);
+      .title-purchase{
+        padding: 0 24px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: end;
+        border-bottom: 1px dotted rgba(0,0,0,.09);
+        .title-total{
+          padding: 13px 10px;
+          color: rgba(0,0,0,0.54);
+          font-size: 12px;
+        }
+        .value-total{
+          padding: 13px 0 13px 10px;
+          width: 240px;
+          border-left: 1px dotted rgba(0,0,0,.09);
+          justify-content: flex-end;
+          word-wrap: break-word;
+          color: rgba(0,0,0,.8);
+        }
+      }
+    }
+  }
+  .confirm{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    .btn-confirm{
+      margin-left: 10px;
+      background-color: #EE4D2D;
+      border: none!important;
+    }
+  }
+}
+@media only screen and (max-width: 539px) {
+  .info-body{
+    display: flex;
+    flex-direction: column!important;
+    .time-line{
+      width: 100% !important;
+      border-left: 0!important;
+      padding: 0!important;
+    }
+  }
+  .item-product{
+    padding: 5px!important;
+  }
+  .info-flex{
+    padding: 0!important;
+  }
+  .info-text{
+    font-weight: 700!important;
+    margin-bottom: 10px!important;
+  }
+}
+
+
+

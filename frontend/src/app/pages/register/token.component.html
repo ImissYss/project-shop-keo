@@ -1,0 +1,28 @@
+<div class="container container--pall">
+  <h1 class="logo">TPShop</h1>
+  <div class="content" *ngIf="status == tokenStatus.VALID">
+    <div class="alert alert-success" role="alert">Xác nhận email thành công. Tiếp tục đăng nhập</div>
+    <a href="https://www.thucphamoishii.com/login" style="color: #EE4D2D">Đăng nhập</a>
+  </div>
+</div>
+
+<div class="container container--pall">
+  <div class="card card-container">
+    <div class="form-group" *ngIf="status == tokenStatus.EXPIRED">
+      <div class="alert alert-danger" role="alert">Link Expired!</div>
+      <button class="btn btn-primary btn-block" (click)="resendToken()">Re-send Verification Email</button>
+    </div>
+    <div class="form-group" *ngIf="status == tokenStatus.SENDING">
+      <div class="alert alert-info" role="alert">Sending mail...</div>
+    </div>
+    <div class="form-group" *ngIf="status == tokenStatus.SENT">
+      <div class="alert alert-info" role="alert">Sent verification email</div>
+    </div>
+    <div class="form-group" *ngIf="status == tokenStatus.INVALID">
+      <div class="alert alert-danger" role="alert">Invalid Link</div>
+    </div>
+    <div class="form-group" *ngIf="errorMessage">
+      <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+    </div>
+  </div>
+</div>

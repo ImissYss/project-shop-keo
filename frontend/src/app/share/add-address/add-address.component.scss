@@ -1,0 +1,60 @@
+@import "src/mixins";
+@import "src/variables";
+.form-input{
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: $grayishBlue
+}
+.form-input:focus{
+  border-color: green
+}
+.province{
+  padding: 20px 10px;
+  input{
+    outline: none;
+    width: 100%;
+  }
+  &__item{
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: rgba(0,0,0,0.8);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  &__item:hover{
+    background-color: #ccd2dc;
+  }
+}
+.user{
+  flex: 1;
+  &__form{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.875rem;
+    width: 100%;
+  }
+}
+:host::ng-deep{
+  .adres{
+    .p-dialog{
+      width: 95%;
+      height: 450px;
+      box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+      background-color: white;
+    }
+    .p-dialog .p-dialog-header-icons{
+      display: none;
+    }
+    .p-dialog-draggable .p-dialog-header{
+      display: none!important;
+    }
+    .p-dialog .p-dialog-content{
+      padding: 5px;
+    }
+  }
+
+  .p-button{
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+}

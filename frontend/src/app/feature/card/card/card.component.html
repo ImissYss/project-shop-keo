@@ -1,0 +1,83 @@
+<app-header [show]="false" class="header"></app-header>
+<div class="container container--pall main" *ngIf="productInOrders && productInOrders.length > 0">
+        <div class="title-card" style="margin-bottom: 10px">
+          <i class="pi pi-home home-icon">/</i>
+          <i class="pi pi-arrow-left home-icon-mobile" (click)="returnPrevPage()"></i>
+          <span class="title_header_cart" style="">Giỏ hàng</span>
+        </div>
+        <div class="card-body">
+          <div class="header-card">
+            <div class="check-all">
+              <input type="checkbox" [(ngModel)]="masterSelected" style="transform: scale(1.5)" (change)="checkAll()">
+            </div>
+            <div class="title-header">
+              <span>Chọn tất cả</span>
+            </div>
+          </div>
+          <div class="card-product">
+            <div class="product-info" *ngFor="let product of productInOrders">
+              <div class="row-product">
+                <div class="image-product">
+                  <div class="check-buy">
+                    <input type="checkbox" style="transform: scale(1.5)" name="list_name" [(ngModel)]="product.status" value="{{product.productId}}" (change)="onchange(product)">
+                  </div>
+
+                    <div class="img">
+                      <img [src]="product.imageProducts" style="width: 100%; height: auto; display: block">
+                    </div>
+                </div>
+                <div class="infor-price">
+                  <div class="title-image">
+                    <a href="#" class="text-image">{{product.productName}}</a>
+                    <div class="price-product">
+                      <span class="old-price">{{product.productPrice | currency : 'VND'}}</span>
+                      <span class="current-price">{{product.productPrice - (product.productPrice * product.discount)/100 | currency : 'VND'}}</span>
+                    </div>
+                    <div class="count">
+                      <span>(x{{product.count}})</span>
+                    </div>
+                  </div>
+                  <div class="quatity-product">
+                    <button class="btn" (click)="minusOne(product)"><i class="pi pi-minus"></i></button>
+                    <input min="1" type="number" class="in" [(ngModel)]="product.count" (change)="onChange(product)" name="count" required>
+                    <button class="btn" (click)="addOne(product)"><i class="pi pi-plus"></i></button>
+                  </div>
+                  <div class="price">
+                    <span>{{(product.productPrice - (product.productPrice * product.discount )/100) * product.count | currency : 'VND'}}</span>
+                  </div>
+                </div>
+                <div class="action">
+                  <i class="pi pi-trash icon-delete" style="cursor: pointer" (click)="remove(product)"></i>
+                  <div class="null"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-card">
+          <div class="payment">
+            <div class="total-price">
+              <div class="title-total">Thanh toán ({{totalItem}} Sản phẩm)</div>
+              <div class="total" *ngIf="productInOrders.length > 0">{{total | currency : 'VND'}}</div>
+            </div>
+            <button pButton pRipple type="button" label="Đặt hàng" class="p-button-rounded p-button-secondary shop" (click)="routerOrder()"></button>
+
+
+          </div>
+        </div>
+      </div>
+<div class="container container--pall cart-null" *ngIf="productInOrders && productInOrders.length === 0">
+  <div class="image-null">
+    <img src="../../../../assets/images/cart-null.png" style="max-width: 100%; height: auto; display: block" >
+  </div>
+  <div class="text-null">Giỏ hàng của bạn còn trống</div>
+  <button pButton type="button" label="Mua ngay" style="margin-top: 1.2rem" routerLink="/"></button>
+</div>
+<div class="container container--pall topSearch">
+  <app-top-search [viewCarousel1]="viewCarousel1" [title]="title" [topSearchProducts]="topSearchProducts"></app-top-search>
+</div>
+<app-spinner [spinner]="spinner"></app-spinner>
+
+
+
+

@@ -1,0 +1,65 @@
+@import "src/mixins";
+
+.search-header{
+  font-family: Helvetica Neue;
+  background: #fff;
+  padding: 5px 0px;
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  flex-direction: column;
+  .search-header-title{
+    height: 30px;
+    margin-top: 5px;
+    color: #2e2e2e;
+    flex-direction: row;
+    align-items: center;
+    .title{
+      font-weight: 500;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+  .search-content-result{
+    display: flex;
+    flex-direction: column;
+  }
+  .top-product-link{
+    margin-bottom: 15px;
+    border-radius: 12px;
+    padding: 7px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    .item-image-wrap{
+      overflow: hidden;
+      background-color: #f4f4f4;
+    }
+    .item-title{
+      display: -webkit-box;
+      font-size: 14px;
+      margin-bottom: 0.5rem;
+      color: rgba(0,0,0,0.68);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    .item-price{
+      color: #000;
+    }
+  }
+  .top-product-link:hover{
+    background: #fff;
+    box-shadow: 0 19px 39px 0 rgb(0 0 0 / 20%);
+  }
+}
+:host::ng-deep{
+  .owl-next{
+    right: 0px!important;
+  }
+  .owl-prev{
+
+  }
+}
+

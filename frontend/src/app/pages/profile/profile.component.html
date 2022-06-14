@@ -1,0 +1,66 @@
+<div class="address">
+  <div class="address-title">
+    <div class="title-left">Địa chỉ của tôi</div>
+    <div class="null"></div>
+    <div class="title-right">
+      <button class="address-add">Thêm địa chỉ</button>
+    </div>
+  </div>
+  <div class="list-address" *ngFor="let address of addresses">
+    <div class="address-content">
+      <div class="property">
+        <div class="name-label">
+          Họ và tên
+        </div>
+        <div class="name-text">
+          <div>{{address.username}}</div>
+        </div>
+      </div>
+      <div class="property">
+        <div class="name-label">
+          Số điện thoại
+        </div>
+        <div class="name-text">
+          <div>{{address.phone}}</div>
+        </div>
+      </div>
+      <div class="property">
+        <div class="name-label">
+          Địa chỉ
+        </div>
+        <div class="name-text">
+          <div>{{address.cdw}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="action-address">
+      <div class="action">
+        <ns-button [label]="'Sửa'" style="margin-right: 5px"></ns-button>
+        <ns-button (click)="showConfirm(address.id)"  [label]="'Xóa'"></ns-button>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div class="p-flex p-flex-column" style="flex: 1">
+      <div class="p-text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <h4>{{message.summary}}</h4>
+        <p>{{message.detail}}</p>
+      </div>
+      <div class="p-grid p-fluid">
+        <div class="p-col-6">
+          <ns-button (click)="onConfirm()" [label]="'Yes'" class="p-button-success"></ns-button>
+        </div>
+        <div class="p-col-6">
+          <ns-button (click)="onReject()" [label]="'No'" class="p-button-secondary"></ns-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-toast>
+

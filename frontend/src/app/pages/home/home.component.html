@@ -1,0 +1,14 @@
+    <app-header [headerHome]="true" [baseIndex]="2000" class="header"></app-header>
+    <app-hero [type]="'HOME'"></app-hero>
+
+  <app-product-list [title]="titleProductList" [products]="products" (changePage)="handlePageChange($event)" [page]="page1" [count]="count1" [pageSize]="pageSize1" [totalPages]="totalPages"></app-product-list>
+  <div class="container container--pall">
+    <app-top-search [viewCarousel1]="viewCarousel1" [title]="title" [topSearchProducts]="topSearchProducts" [customOptions]="customOptions1"></app-top-search>
+  </div>
+
+<app-spinner [spinner]="spinner"></app-spinner>
+
+
+
+
+

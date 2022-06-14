@@ -1,0 +1,19 @@
+<!--<app-fix-content *ngIf="isUser"></app-fix-content>-->
+<router-outlet></router-outlet>
+<!--<button *ngIf="isShow" (click)="gotoTop()"><i class="pi pi-arrow-up"></i></button>-->
+<div class="contact-active" *ngIf="infoShop">
+  <ul>
+    <li title="facebook"><a target="_blank" [href]="infoShop.linkFanpage"><i  class="fab fa-facebook-f" style="font-size: 25px"></i></a>
+    </li>
+    <li title="messenger"><a target="_blank" [href]="infoShop.linkMessage"><i title="messenger" class="fab fa-facebook-messenger" style="font-size: 25px"></i></a>
+    </li>
+    <li title="zalo"><a target="_blank" [href]="infoShop.linkZalo"> <img src="../../../assets/images/zalo_icon.png" alt=""></a>
+    </li>
+    <li title="map"><a target="_blank" [href]="infoShop.linkGoogleMap">   <i class="fas fa-map-marker-alt" style="font-size: 25px"></i></a>
+    </li>
+  </ul>
+</div>
+<app-footer *ngIf="isUser"></app-footer>
+
+
+

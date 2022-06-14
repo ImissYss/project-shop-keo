@@ -1,0 +1,74 @@
+<div class="bootstrap-wrapper" style="font-family: Helvetica Neue">
+  <div class="container-fluid">
+    <div class="row main-header">
+      <div class="col-12">
+        <div class="prodile-header">
+          <div class="header-left">
+            <i class="pi pi-arrow-left icon-left" (click)="returnPrev()"></i>
+            <div class="header-text">Trang cá nhân</div>
+          </div>
+          <i class="pi pi-ellipsis-v icon-right" (click)="showBarBottom()"></i>
+        </div>
+        <p-sidebar [(visible)]="visibleSidebarBottom" position="bottom" [baseZIndex]="100000">
+          <app-sidebar-bottom></app-sidebar-bottom>
+        </p-sidebar>
+      </div>
+    </div>
+    <div class="row">
+      <p-tabView styleClass="tabview-custom" class="tab">
+        <p-tabPanel>
+          <ng-template pTemplate = "header">
+            <i class="pi pi-user icons"></i>
+            <span>Tài khoản</span>
+          </ng-template>
+          <div class="content-account" *ngIf="user">
+            <div class="title">Tên đăng nhập</div>
+            <div class="content">{{user.displayName}}</div>
+          </div>
+          <div class="content-account" *ngIf="user">
+            <div class="title">Email</div>
+            <div class="content">{{user.email}}</div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Header II">
+          <ng-template pTemplate = "header">
+            <i class="pi pi-calendar icons"></i>
+            <span>Đơn hàng</span>
+          </ng-template>
+          <div class="order-history">
+            <div class="header-order">
+              <div class="header-order-l">
+                <i class="pi pi pi-calendar"></i>
+                <span class="text-l">Danh sách đơn hàng</span>
+              </div>
+              <div class="header-order-r">
+                <i class="pi pi-filter" (click)="showSidebarFilter()"></i>
+              </div>
+
+            </div>
+            <div class="order-info">
+              <app-order-info [orders]="orderFilterResult"></app-order-info>
+            </div>
+          </div>
+
+        </p-tabPanel>
+      </p-tabView>
+
+    </div>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="visibleFilterSidebar" position="bottom" [baseZIndex]="100000">
+  <div class="text-header-bar">
+    <div class="text-sort">
+      Bộ lọc
+    </div>
+    <div class="text-sort flex-link" *ngFor="let option of filterOption" (click)="filterByStatus(option.value)">
+      <span class="text-home">{{option.label}}</span>
+    </div>
+    <div class="text-sort flex-link">
+      <i class="pi pi-phone icons-home"></i>
+      <span class="text-home">Liên hệ shop: &nbsp;<strong>0387333535</strong></span>
+    </div>
+  </div>
+</p-sidebar>

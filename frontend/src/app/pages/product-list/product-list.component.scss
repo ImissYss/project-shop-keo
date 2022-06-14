@@ -1,0 +1,66 @@
+@import "src/mixins";
+@import "src/variables";
+.article {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+
+    @include breakpoint-up(medium) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    @include breakpoint-up(large) {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.35rem;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    overflow: hidden;
+    background-color: $white;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+    transition: all 150ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+.TpShop-list-product-header{
+  background: #fff;
+  height: 3.75rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  .list-product-title{
+    color: rgba(0,0,0,0.54);
+    font-size: 16px;
+    display: block;
+    font-weight: 500;
+    flex: 1;
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 20px;
+    line-height: 19px;
+    .list-title-content{
+      color: #000;
+      font-weight: 500;
+    }
+  }
+}
+.product-list{
+  margin-top: 5px;
+}
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+

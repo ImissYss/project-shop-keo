@@ -1,0 +1,92 @@
+
+<div class="header-product-info">
+  <div class="returnBtn">
+    <i (click)="backToPreviousPage()" class="fa fa-arrow-left"></i>
+  </div>
+  <div class="searchBtn">
+    <i class="fa fa-cart-arrow-down" style="position: relative" >
+      <span class="totalItem">5</span>
+    </i>
+    <i class="fa fa-ellipsis-v" (click)="showBar()"></i>
+  </div>
+</div>
+<p-sidebar [(visible)]="visibleSidebarBottom" position="bottom" [baseZIndex]="100000" class="sid-bottom">
+    <app-sidebar-bottom></app-sidebar-bottom>
+  </p-sidebar>
+
+<app-header class="header"></app-header>
+<div class="container container--pall">
+  <div class="body-content">
+    <div class="content">
+      <div class="header-new">
+        <i class="pi pi-tag"></i>
+        <span class="name-title">Hướng dẫn mua hàng</span>
+      </div>
+      <div class="body-new">
+        <div class="text-body">
+          <span><strong>Bước 1:</strong> Truy cập website và lựa chọn sản phẩm bạn cần mua. Tại đây có 2 button cho bạn lựa
+                chọn là "mua ngay" và "giỏ hàng". Đối với button "mua ngay", sau khi bạn ấn trang web sẽ chuyển hướng đến giỏ hàng
+                của bạn. Nếu bạn lựa chọn button "giỏ hàng", sẽ có 1 popup hiển thị "thêm sản phẩm thành công" hiện lên.</span><br/>
+        </div>
+        <div class="image-body">
+          <div class="img1">
+            <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang.JPG" style="width: 100%; height: 100%"/>
+          </div>
+          <div class="img1">
+            <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang-1.JPG" style="width: 100%; height: 100%"/>
+          </div>
+        </div>
+        <span>Trong trường hợp bạn chưa đăng nhập chúng tôi sẽ chuyển bạn đến trang đăng nhập. Tại đây bạn sẽ có 2 lựa chọn để đăng nhập</span><br/>
+              1. Đăng nhập bằng tài khoản cá nhân bạn đã đăng ký trước đó bằng gmail cá nhân của bạn.<br/>
+              2. Đăng nhập bằng tài khoản google của bạn.<br/>
+              <strong>Chú ý: </strong><span>Để đăng ký tài khoản tại Oishii Mart bạn cần phải có 1 tài khoản Gmail cá nhân để phục vụ
+              trong quá trình xác thực bảo mật thông tin cá nhân. Nếu bạn chưa có tài khoản Gmail hoặc chưa biết tạo tài khoản Gmail
+              , bạn có thể nhắn tin cho Page để được cấp tài khoản và tiếp tục mua hàng.</span><br/>
+
+
+        <span>
+                <strong>Bước 2: </strong>Ân vào button "đặt hàng". Trang web sẽ chuyển hướng bạn đến trang xác nhận đơn hàng và thanh toán.
+        </span><br/>
+        <div class="image-body">
+          <div class="img1">
+            <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang-2.JPG" style="width: 100%; height: 100%"/>
+          </div>
+        </div>
+        <span>
+        </span>
+        <br/>
+
+        <span><strong>Bước 3:</strong></span>
+              Nếu bạn mua hàng lần đầu và chưa có thông tin địa chỉ nhận hàng sẽ có 1 popup hiện lên để bạn điền thông tin địa chỉ cho
+              đơn hàng. Sau khi điền đầy đủ thông tin và nhấn "Save", bạn sẽ chọn vào địa chỉ hiển thị trên màn hình và tiến hàng xác nhận
+              đặt hàng.
+              <div class="image-body">
+                <div class="img1">
+                  <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang-3.JPG" style="width: 100%; height: 100%"/>
+                </div>
+                <br/>
+                <div class="img1">
+                  <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang-4.JPG" style="width: 100%; height: 100%"/>
+                </div>
+              </div>
+
+              <span>
+                <strong>Bước 4: </strong>
+                Sau khi xác nhận và đặt đơn hàng thành công, trang web sẽ chuyển hướng đến danh sách đơn hàng cá nhân của khách hàng. Tại đây
+                bạn có thể theo dõi trạng thái của đơn hàng.
+              </span><br/>
+              <div class="image-body">
+                <div class="img1">
+                  <img src="../../../../assets/images/huongdanmuahang/huong-dan-mua-hang-5.JPG" style="width: 100%; height: 100%"/>
+                </div>
+              </div>
+              Sau khi nhận được đơn hàng bạn gửi chúng tôi sẽ liên hệ bằng cách gọi điện lại để xác nhận lại đơn hàng và địa chỉ của bạn.
+              Trân trọng cảm ơn.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

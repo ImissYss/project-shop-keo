@@ -1,0 +1,18 @@
+<section class="hero container">
+  <div class="hero__image">
+
+  </div>
+  <div class="hero__text container--pall">
+    <h1 style="font-family: Helvetica Neue Bold;">
+      TP Shop Dụng Cụ Tóc - Chuyên hàng chính hãng giá rẻ nhất thị trường
+    </h1>
+    <p *ngIf="type === 'HOME'">
+      Chuyên phân phối các thương hiệu hàng đầu ngành tóc: WAHL, VIKO, YS PARK, BYMARINA, TAKUMI
+    </p>
+    <div *ngIf="type === 'INTRODUCE' || type === 'CONTACT'" style="margin-bottom: 20px">
+      <i class="fa fa-map-marker" style="color: hsl(136, 65%, 51%); margin-right: 5px"></i>
+      <span>Số 5, G17a Thành Công - Ba Đình - Hà Nội</span>
+    </div>
+  </div>
+
+</section>

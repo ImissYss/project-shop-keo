@@ -1,0 +1,75 @@
+<div class="info-body">
+  <div class="body-content">
+    <div class="title-content">
+      <a (click)="totalOrder()" [ngStyle]="type== 'TOTAL'? {'border-bottom-color': '#EE4D2D'} : {'border-bottom-color': '#fff'}" class="order-status" style="border-bottom-color: #EE4D2D">
+        <span class="status-text">Tất cả</span>
+      </a>
+      <a (click)="waitForConfirm()" [ngStyle]="type== 'WAIT'? {'border-bottom-color': '#EE4D2D'} : {'border-bottom-color': '#fff'}" class="order-status">
+        <span class="status-text">Chờ xác nhận</span>
+      </a>
+      <a (click)="delivered()" [ngStyle]="type== 'DELIVERED'? {'border-bottom-color': '#EE4D2D'} : {'border-bottom-color': '#fff'}" class="order-status">
+        <span class="status-text">Đã giao</span>
+      </a>
+      <a (click)="cancel()" [ngStyle]="type== 'CANCEL'? {'border-bottom-color': '#EE4D2D'} : {'border-bottom-color': '#fff'}" class="order-status">
+        <span class="status-text">Đã hủy</span>
+      </a>
+
+    </div>
+    <div *ngFor="let order of ordersView">
+      <div class="product-inorder">
+        <div>
+          <div class="product-info">
+            <div class="product-info-title">
+              <div class="date-order">
+                <i class="pi pi-clock oclock-icon"></i>
+                <span>{{order.createTime| date: 'd/M/yy, h:mm a'}}</span>
+              </div>
+              <div class="status-ship">
+                <div class="status-start">
+                  <a class="icon-ship" href style="padding-top: 2px">
+                    <i class="pi pi-shopping-cart" style="margin-right: 3px"></i>
+                  </a>
+                  <div class="result-status" *ngIf="order.orderStatus == 1">Thành công</div>
+                  <div class="result-status" *ngIf="order.orderStatus == 2">Đã hủy</div>
+                  <div class="result-status" *ngIf="order.orderStatus == 0">Chờ xác nhận</div>
+                </div>
+              </div>
+            </div>
+            <div style="border-bottom: 1px solid rgba(0,0,0,.09); display: block"></div>
+            <a href class="product-link" *ngFor="let product of order.products" (click)="viewDetailOrder()" [routerLink]="'/ho-so/don-hang/' + order.orderId">
+              <div class="body-link">
+                <div class="body-flex-start">
+                  <div class="image-pro">
+                    <img [src]="product.imageProducts" style="max-width: 100%; height: auto; display: block"/>
+                  </div>
+                  <div class="product-name-info">
+                    <div class="name">
+                      <span>{{product.productName}}</span>
+                    </div>
+                    <div class="count-product">
+                      <span>x{{product.count}}</span>
+                    </div>
+                  </div>
+                  <div class="price-info">
+                    <span class="price-old">{{product.productPrice | currency: "VND"}}</span>
+                    <span class="price-current">{{product.productPrice - (product.productPrice*product.discount)/100 | currency: "VND"}}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="total-price-order">
+              <div class="body-price">
+                <div class="total-text">
+                  Tổng số tiền:
+                </div>
+                <div class="price">
+                  {{order.orderAmount | currency: "VND"}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

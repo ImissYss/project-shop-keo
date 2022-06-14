@@ -1,0 +1,41 @@
+<app-header class="header"></app-header>
+<div class="container container--pall info-main">
+        <div class="info-slidebar">
+          <div class="info-title">
+            <a href="#">
+              <div class="avatar-user">
+                <img src="" class="image-link" style="max-width: 100%; height: auto; display: block"/>
+              </div>
+            </a>
+            <div class="user-name">
+              <div class="username">maitiendat</div>
+              <div>
+                <a href="#" class="link-account">
+                  <i class="pi pi-pencil"></i>
+                  <span>Sửa hồ sơ</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="status-dropdown" *ngFor="let option of options">
+            <div class="order-info-link" (click)="selectOption(option.value)" style="cursor: pointer">
+              <div class="order-icon">
+                <i [ngClass]="option.icon"></i>
+              </div>
+              <span class="order-text">{{option.label}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <ng-template [ngIf]="option === 'listOrder'">
+            <app-order-info [orders]="orders" (viewDetail)="viewDeta()"></app-order-info>
+          </ng-template>
+          <ng-template [ngIf]="option === 'profile'">
+            <app-account [user]="user"></app-account>
+          </ng-template>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+
+

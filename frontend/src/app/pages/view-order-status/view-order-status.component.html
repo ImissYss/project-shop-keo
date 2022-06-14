@@ -1,0 +1,95 @@
+<div class="header-order-detail">
+  <i class="pi pi-arrow-left icon-arrow" (click)="returnPrev()"></i>
+  <span style="margin-left: 10px">Thông tin đơn hàng</span>
+</div>
+<div class="order-info">
+  <div class="order-container" *ngIf="order">
+    <div class="status-order" *ngIf="order.orderStatus! == 0">
+      <span class="status">Chờ xác nhận</span>
+    </div>
+    <div class="status-order" *ngIf="order.orderStatus! == 1">
+      <span class="status">Đã giao hàng</span>
+    </div>
+    <div class="status-order" *ngIf="order.orderStatus! == 2">
+      <span class="status">Đã hủy</span>
+    </div>
+    <div class="callShop">
+      <div class="call-flex">
+        <div class="message">Cảm ơn bạn đã mua hàng tại TPShop!</div>
+        <div class="call">
+          <span>
+            <i class="pi pi-phone"></i>
+            Liên hệ
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="info-address">
+      <div class="info-flex">
+        <div class="info-title">
+          <div class="info-text">Địa chỉ nhận hàng</div>
+        </div>
+        <div class="info-body">
+          <div class="address">
+            <div class="username">{{order.userNameReceive}}</div>
+            <div class="detail-address">
+              <span>(+84) {{order.buyerPhone.substring(1)}}</span>
+              <br>
+              {{order.specialAddress}}, {{order.cdw}}
+            </div>
+          </div>
+        </div>
+        <div class="product-in-order" style="margin-top: 20px">
+          <div class="item-product" *ngFor="let product of order.products">
+            <a href="" class="link-prod">
+              <div class="info-prod">
+                <div>
+                  <img [src]="product.imageProducts" style="width: 80px; height: 80px; border: 1px solid rgba(0,0,0,0.26)"/>
+                </div>
+                <div class="detail-info">
+                  <div class="description">
+                    <span>{{product.productName}}</span>
+                  </div>
+                  <div class="count">
+                    x{{product.count}}
+                  </div>
+                </div>
+              </div>
+              <div class="price">
+<!--                <span style="margin-right: 4px; text-decoration-line: line-through; opacity: 0.26">{{product.productPrice | currency: "VND"}}</span>-->
+                <span class="currPrice">{{product.productPrice - (product.productPrice*product.discount)/100 | currency: "VND"}}</span>
+              </div>
+            </a>
+          </div>
+          <div class="purchase">
+            <div class="title-purchase">
+              <div class="title-total">
+                <span>Tổng tiền hàng</span>
+              </div>
+              <div class="value-total">
+                <div>{{order.orderAmount | currency: "VND"}}</div>
+              </div>
+
+            </div>
+            <div class="title-purchase">
+              <div class="title-total">
+                <span>Phí vận chuyển</span>
+              </div>
+              <div class="value-total">
+                <div>₫0</div>
+              </div>
+            </div>
+            <div class="title-purchase">
+              <div class="title-total">
+                <span>Tổng số tiền</span>
+              </div>
+              <div class="value-total">
+                <div class="total-num">{{order.orderAmount | currency: "VND"}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

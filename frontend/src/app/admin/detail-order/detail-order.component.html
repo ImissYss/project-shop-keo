@@ -1,0 +1,111 @@
+<div class="info-address">
+  <div class="info-flex">
+    <div style="margin-bottom: 10px;">
+
+    </div>
+    <div class="info-body" *ngIf="order">
+      <div class="address">
+        <div class="info-text">Địa chỉ giao hàng</div>
+        <div class="username">{{order.userNameReceive}}</div>
+        <div class="detail-address" *ngIf="order.buyerPhone">
+          <span>(+84) {{order.buyerPhone.substring(1)}}</span>
+          <br>
+          {{order.specialAddress}}, {{order.cdw}}
+        </div>
+      </div>
+      <div class="time-line">
+        <div class="info-text">Thông tin khách hàng</div>
+        <div class="inline-infor">
+          <div class="title">Tên khách hàng</div>
+          <div class="content">{{order.buyerName}}</div>
+        </div>
+        <div class="inline-infor">
+          <div class="title">Email khách hàng</div>
+          <div class="content">{{order.buyerEmail}}</div>
+        </div>
+        <div class="inline-infor">
+          <div class="title">Số điện thoại</div>
+          <div class="content">{{order.buyerPhone}}</div>
+        </div>
+        <div class="inline-infor">
+          <div class="title">Ngày mua hàng</div>
+          <div class="content">{{order.createTime | date: 'dd-MM-YYYY h:mm a'}}</div>
+        </div>
+        <div class="inline-infor">
+          <div class="title">Trạng thái đơn hàng</div>
+          <div [class]="'status-'+order.orderStatus" *ngIf="orderStatus === 0">Chưa xác nhận</div>
+          <div [class]="'status-'+order.orderStatus" *ngIf="orderStatus ===1">Hoàn thành</div>
+          <div [class]="'status-'+order.orderStatus" *ngIf="orderStatus ===2">Đã hủy</div>
+        </div>
+      </div>
+    </div>
+    <div class="product-in-order" style="margin-top: 20px" *ngIf="order">
+      <div class="item-product" *ngFor="let product of order.products">
+        <div class="link-prod">
+          <div class="info-prod">
+            <div>
+              <img [src]="product.imageProducts" style="width: 80px; height: 80px; border: 1px solid rgba(0,0,0,0.26)"/>
+            </div>
+            <div class="detail-info">
+              <div class="description">
+                <span>{{product.productName}}</span>
+              </div>
+              <div class="count">
+                x{{product.count}}
+              </div>
+
+            </div>
+          </div>
+          <div class="price" style="">
+            <span style="margin-right: 4px; text-decoration-line: line-through; opacity: 0.26">{{product.productPrice | currency: "VND"}}</span>
+            <span style="color:#EE4D2D;">{{product.productPrice - (product.productPrice*product.discount)/100 | currency: "VND"}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="purchase">
+        <div class="title-purchase">
+          <div class="title-total">
+            <span>Tổng tiền hàng</span>
+          </div>
+          <div class="value-total">
+            <div>{{order.orderAmount | currency: "VND"}}</div>
+          </div>
+
+        </div>
+        <div class="title-purchase">
+          <div class="title-total">
+            <span>Phí vận chuyển</span>
+          </div>
+          <div class="value-total">
+            <div>₫0</div>
+          </div>
+
+        </div>
+        <div class="title-purchase">
+          <div class="title-total">
+            <span>Giảm giá phí vận chuyển</span>
+          </div>
+          <div class="value-total">
+            <div>₫0</div>
+          </div>
+
+        </div>
+        <div class="title-purchase">
+          <div class="title-total">
+            <span>Tổng số tiền</span>
+          </div>
+          <div class="value-total">
+            <div style="color: #EE4D2D; font-size: 24px">{{order.orderAmount | currency: "VND"}}</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="confirm" *ngIf=" order && orderStatus != 1 && orderStatus != 2">
+      <button (click)="confirmOrder(order.orderId)" pButton pRipple  label="Xác nhận" class="btn-confirm"></button>
+      <button (click)="cancelOrder(order.orderId)" pButton label="Hủy đơn" class="btn-confirm"></button>
+    </div>
+  </div>
+</div>
+

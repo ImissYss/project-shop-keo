@@ -1,0 +1,57 @@
+<p-button label="Tạo thông tin về chính sách bảo hành" class="btn-policy" *ngIf="isCreate" (click)="openCreate()"></p-button>
+<p-button label="Chỉnh sửa thông tin về chính sách bảo hành" class="btn-policy"  *ngIf="!isCreate" (click)="openEdit()"></p-button>
+<div class="policy" *ngIf="policy">
+  <div class="policy-header">
+    Chính sách bảo hành và đổi trả tại TPShop
+  </div>
+  <div class="policy-body" [innerHTML]="policy.description">
+
+  </div>
+</div>
+
+<p-dialog [(visible)]="visiblePolicy" [style]="{width: '900px'}" [header]="header" [modal]="true" styleClass="p-fluid">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<!--    <div class="p-grid p-fluid" style="margin-top: 10px;">-->
+<!--      <div class="p-field p-lg-12">-->
+<!--        <label for="description">Chính sách bảo hành</label>-->
+<!--        <p-editor formControlName="description" [style]="{'height':'220px'}" [ngClass]="{'is-invalid': submitted && f['productDescription'].errors}"></p-editor>-->
+<!--        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">-->
+<!--          <div *ngIf="f['description'].errors['required']">bạn phải nhập thông tin cho chính sách</div>-->
+<!--          <div *ngIf="f['description'].errors['minlength']">chính sách phải chứa ít nhất 100 kí tự</div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--      <pre><code>{{ this.form.value['description'] }}</code></pre>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="description">Chính sách bảo hành</label>-->
+<!--      <quill-editor [styles]="{height: '400px'}"  trackChanges="all" [modules]="modules" formControlName="description"-->
+<!--      >-->
+<!--      </quill-editor>-->
+<!--    </div>-->
+
+    <div *ngIf="isCreate" style="position: absolute; bottom: 0">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button
+        class="btn btn-warning float-right"
+        style="margin-left: 20px"
+        (click)="onReset()"
+      >
+        Reset
+      </button>
+    </div>
+    <div *ngIf="!isCreate">
+      <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+      <button
+        class="btn btn-warning float-right"
+        style="margin-left: 20px"
+        (click)="cancel()"
+      >
+        Hủy
+      </button>
+    </div>
+  </form>
+  <p-toast></p-toast>
+</p-dialog>

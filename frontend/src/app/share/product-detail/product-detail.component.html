@@ -1,0 +1,23 @@
+<div style="cursor: pointer" [routerLink]="'/san-pham/' + name + '/' + product.productId">
+  <div
+    class="article__image"
+  >
+    <img src="assets/images/lazyimg.jpg" [srcLazy]="product.urlImage" [alt]="product.imageName" style="width: 100%; height: 100%" appLazyLoadImage>
+  </div>
+  <div class="article__text">
+    <div class="article__author">
+      <div>By tp shop</div>
+      <div>Đã bán <strong>{{product.sold}}</strong></div>
+    </div>
+    <div class="article__title">
+      {{product.productName}}
+    </div>
+    <div class="article__description" *ngIf="product.discount > 0">
+      <span class="old_price">{{product.productPrice | currency : 'VND'}}</span>
+      <span class="new_price">{{product.productPrice - (product.productPrice * product.discount)/100 | currency : 'VND'}}</span>
+    </div>
+    <div class="article__description" *ngIf="product.discount == 0">
+      <span class="new_price">{{product.productPrice | currency : 'VND'}}</span>
+    </div>
+  </div>
+</div>

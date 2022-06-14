@@ -1,0 +1,136 @@
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [value]="orders" dataKey="productId" [(selection)]="selectOrders" styleClass="p-datatable-customers" [rowHover]="true"
+           [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+           [paginator]="true" currentPageReportTemplate="Hiển thị {last} trên {totalRecords} đơn hàng"
+           [filterDelay]="0" [globalFilterFields]="['orderId','buyerName','buyerPhone','buyerEmail','orderAmount','orderStatus', 'createTime']">
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        Danh sách đơn hàng
+        <span class="p-input-icon-left">
+          <input pInputText type="text" placeholder="Tìm kiếm theo gmail" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="orderId">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            ID
+            <p-sortIcon field="orderId"></p-sortIcon>
+            <p-columnFilter type="text" field="orderId" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="buyerName">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Tên khách hàng
+            <p-sortIcon field="buyerName"></p-sortIcon>
+            <p-columnFilter type="text" field="buyerName" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="buyerPhone">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Số điện thoại
+            <p-sortIcon field="buyerPhone"></p-sortIcon>
+            <p-columnFilter type="text" field="buyerPhone" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="buyerEmail">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Email
+            <p-sortIcon field="buyerEmail"></p-sortIcon>
+            <p-columnFilter type="text" field="buyerEmail" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="orderAmount">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Tổng tiền
+            <p-sortIcon field="orderAmount"></p-sortIcon>
+            <p-columnFilter type="numeric" field="orderAmount" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="createTime">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Ngày lên đơn
+            <p-sortIcon field="createTime"></p-sortIcon>
+            <p-columnFilter type="date" field="createTime" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="orderStatus">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Trạng thái
+            <p-sortIcon field="orderStatus"></p-sortIcon>
+            <p-columnFilter field="orderStatus" matchMode="equals" display="menu" class="p-ml-auto">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-dropdown [ngModel]="value" [options]="statuses"  (onChange)="filter($event.value)" placeholder="Any">
+                  <ng-template let-option pTemplate="item">
+                    <span [class]="'status-' + option.value">{{option.label}}</span>
+                  </ng-template>
+                </p-dropdown>
+              </ng-template>
+            </p-columnFilter>
+          </div>
+        </th>
+        <th style="width: 8rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr class="p-selectable-row">
+        <td>
+          <p-tableCheckbox [value]="order"></p-tableCheckbox>
+        </td>
+        <td>
+          <span class="p-column-title">ID</span>
+          {{order.orderId}}
+        </td>
+        <td>
+          <span class="p-column-title">Tên khách hàng</span>
+          {{order.buyerName}}
+        </td>
+        <td>
+          <span class="p-column-title">Số điện thoại</span>
+          (+84) {{order.buyerPhone?.slice(1)}}
+        </td>
+        <td>
+          <span class="p-column-title">Email</span>
+          {{order.buyerEmail}}
+        </td>
+        <td>
+          <span class="p-column-title">Tổng tiền</span>
+          {{order.orderAmount | currency: 'VND'}}
+        </td>
+        <td>
+          <span class="p-column-title">Ngày lên đơn</span>
+          {{order.createTime | date: 'MM/dd/yyyy'}}
+        </td>
+        <td>
+          <span class="p-column-title">Trạng thái</span>
+          <span class="status-1" *ngIf="order.orderStatus ==  1 ">Hoàn thành</span>
+          <span class="status-0" *ngIf="order.orderStatus == 0 ">Chưa xử lý</span>
+          <span class="status-2" *ngIf="order.orderStatus == 2 ">Đã hủy</span>
+        </td>
+        <td style="text-align: center">
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="viewOrder(order.orderId)" ></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="orderDialog" [style]="{width: '900px'}" header="Thông tin đơn hàng" [modal]="true" styleClass="p-fluid">
+  <app-detail-order *ngIf="orderCurr" [order]="orderCurr" [orderStatus]="orderCurr.orderStatus" (checkStatus)="changeStatus($event)"></app-detail-order>
+</p-dialog>

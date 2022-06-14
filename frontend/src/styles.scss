@@ -1,0 +1,190 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Helvetica Neue;
+  src: url("assets/font/Helvetica/helveticaneue.ttf") format("opentype");
+  //src: url("assets/font/Helvetica/helvetica-neue-italic.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Helvetica Light;
+  src: url("assets/font/Helvetica/helvetica-neue-light.ttf") format("opentype");
+}
+@font-face {
+  font-family: Helvetica regular;
+  src: url("assets/font/Helvetica/helvetica-neue-regular.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Helvetica Bold;
+  src: url("assets/font/Helvetica/helvetica-neue-bold.ttf") format("opentype");
+}
+@import "globals";
+@import "variables";
+@import "mixins";
+
+.swal2-popup{
+  background: rgba(0,0,0,0.5) !important;
+}
+.swal2-icon.swal2-success [class^=swal2-success-circular-line]{
+  width: 0!important;
+}
+.swal2-icon.swal2-success .swal2-success-fix{
+  width: 0!important;
+}
+.swal2-html-container{
+  color: #fff!important;
+  font-family: Helvetica Neue!important;
+}
+.swal2-title{
+  color: #fff!important;
+}
+
+.p-sidebar .p-sidebar-content{
+  padding: 0!important;
+}
+
+.owl-next, .owl-prev {
+  background-color: #FFFFFF!important;
+  box-shadow: rgba(0,0,0,0.1) 0px 1px 2px 0px!important;
+  color: rgba(0,0,0,0.56)!important;
+  border-radius: 50% !important;
+  width: 30px!important;
+  height: 30px!important;
+  transform: scale(1)!important;
+  transition: all 350ms ease-in-out!important;
+  position: absolute;
+  top: 32%;
+}
+.owl-carousel:hover{
+  .owl-next, .owl-prev{
+    transform: scale(1.5)!important;
+  }
+}
+
+.homepage-carousel{
+  .owl-next, .owl-prev{
+    display: none!important;
+  }
+}
+.rating {
+  .p-rating-icon {
+    font-size: 8px !important;
+  }
+}
+.p-buttonset .p-button {
+  margin-right: 5px!important;
+}
+
+.p-text-secondary{
+  color: #fff!important;
+}
+
+.owl-next {
+  right: -20px;
+  transform: translate(-50%, -50%);
+}
+.owl-prev {
+  left: -20px;
+  transform: translate(-50%, -50%);
+}
+.owl-prev li, .owl-next li{
+  font-size: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator.p-highlight button{
+  background: #EE4D2D!important;
+}
+.p-galleria .p-galleria-item-nav{
+  position: absolute;
+  top: 32%!important;
+  width: 30px!important;
+}
+
+
+.p-galleria-item {
+  height: 70% !important;
+}
+
+.p-field-checkbox label{
+  margin-bottom: 0px!important;
+}
+//tùy biến badge
+.p-badge{
+  min-width: 1rem!important;
+  height: 1rem!important;
+  line-height: 1rem!important;
+  background: #EE4D2D!important;
+}
+.p-avatar{
+  height: 1.5rem!important;
+  width: 1.5rem!important;
+}
+
+//tùy biến p-panel-menu
+.p-panelmenu .p-panelmenu-header > a{
+  background: transparent!important;
+  padding-left: 0px!important;
+  border: 0!important;
+  font-size: 14px!important;
+  outline: none!important;
+  box-shadow: none!important;
+  font-weight: 500!important;
+  line-height: 1rem!important;
+  color: rgba(0,0,0,0.87)!important;
+  padding-bottom: 2px!important;
+}
+
+.p-panelmenu .p-panelmenu-content{
+  background: transparent!important;
+  border: 0px!important;
+  font-size: 0.875rem!important;
+  transition: color .1s cubic-bezier(.4,0,.2,1) !important;
+  color: rgba(0,0,0,0.65) !important;
+  padding-top: 0px!important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link{
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem!important;
+  padding-left: 1.5rem!important;
+}
+
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:hover{
+  background: transparent!important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text:hover{
+  color: #EE4D2D!important;
+}
+.p-panelmenu .p-menuitem-text{
+  color: rgba(0,0,0,0.69)!important;
+}
+.p-panelmenu .p-menuitem-text:hover{
+  color: #EE4D2D!important;
+}
+
+//tùy biến thanh phân trang
+.ngx-pagination .current{
+  background: #EE4D2D!important;
+}
+.ngx-pagination a:hover{
+  background: transparent!important;
+}
+
+
+// tùy biến box-shawdow của p-checkbox
+.p-checkbox-box.p-focus{
+  box-shadow: none!important;
+}
+
+//tùy biến box-shawdow của p-button
+.p-button:focus{
+  box-shadow: none!important;
+}
+
+//tùy biến box-shawdow của p-dropdown
+.p-focus{
+  box-shadow: none!important;
+}
+

@@ -1,0 +1,34 @@
+<form (ngSubmit)="createAddress()">
+<div class="p-fluid p-grid main-form">
+  <div class="user__form">
+    <input class="form-input" [ngStyle]="(customerName === '' && isSubmitted)?{'border-color': 'red'}: {'border-color': 'hsl(233, 8%, 62%)'}" type="text" [(ngModel)]="customerName" name="customerName" placeholder="Họ và tên">
+    <input class="form-input" [ngStyle]="(customerPhone === '' && isSubmitted)?{'border-color': 'red'}: {'border-color': 'hsl(233, 8%, 62%)'} " type="number" [(ngModel)]="customerPhone" name="customerPhone" placeholder="Số điện thoại">
+    <input class="form-input"[ngStyle]="(tinh === '' && isSubmitted)?{'border-color': 'red'}: {'border-color': 'hsl(233, 8%, 62%)'} " [(ngModel)]="tinh" name="tinh" type="text" placeholder="Tỉnh/thành phố" (click) ="selectProvince()">
+    <input class="form-input"[ngStyle]="(huyen === '' && isSubmitted)?{'border-color': 'red'}: {'border-color': 'hsl(233, 8%, 62%)'} " [(ngModel)]="huyen" name="huyen" type="text" placeholder="Quận/huyện" [disabled]="validDistrict" (click)="selectDistrict()">
+    <input class="form-input"[ngStyle]="(xa === '' && isSubmitted)?{'border-color': 'red'}: {'border-color': 'hsl(233, 8%, 62%)'}" [(ngModel)]="xa" name="xa" type="text" placeholder="Phường/xã" [disabled]="validWarn" (click)="selectWarn()">
+    <input class="form-input" [(ngModel)]="sonha" type="text" placeholder="Số nhà/hẻm">
+  </div>
+</div>
+    <button type="button" pButton class="btn-return" (click)="returnVs()">Trở về</button>
+    <button class="btn-save" [disabled]="!customerName || !customerPhone || !tinh || !huyen || !xa" type="submit" pButton >Save</button>
+</form>
+
+<p-dialog [(visible)]="addressDialog" [modal]="true" class="adres">
+  <p-scrollPanel [style]="{width: '100%', height: '450px'}">
+    <div class="province">
+      <div class="icons">
+        <i class="fa fa-window-close" style="float: right; cursor: pointer" (click)="closeDialog1()"></i>
+      </div>
+      <input class="form-input" type="text" placeholder="Nhập tên cần tìm kiếm" [(ngModel)]="filterString">
+      <div *ngIf="chooseP">
+        <div class="province__item" *ngFor="let p of province | filter:filterString" (click)="chooseProvince(p)" >{{p}}</div>
+      </div>
+      <div *ngIf="chooseD">
+        <div class="province__item" *ngFor="let p of district | filter:filterString" (click)="chooseDistrict(p)" >{{p}}</div>
+      </div>
+      <div *ngIf="chooseW">
+        <div class="province__item" *ngFor="let p of warn | filter:filterString" (click)="chooseWarn(p)" >{{p}}</div>
+      </div>
+    </div>
+  </p-scrollPanel>
+</p-dialog>

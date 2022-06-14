@@ -1,0 +1,79 @@
+<div class="header-login-mobile">
+  <i class="pi pi-arrow-left icons" (click)="returnViewPrev()"></i>
+  <div class="title-login" routerLink="/login">Đăng nhập</div>
+  <div class="divide">/</div>
+  <div class="title-register" routerLink="/dang-ky">Đăng ký</div>
+</div>
+
+<div class="container container--pall main" style="background-color: #664986; min-height: 900px">
+        <h1 class="logo">
+          <a href routerLink="/" class="link">TPShop</a>
+        </h1>
+        <div class="content">
+          <div class="panel">
+            <h2 class="h3">Đăng ký tài khoản</h2>
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+              <div class="alert alert-danger" *ngIf="isSignUpFailed">{{errorMessage}}</div>
+              <div class="form-group">
+                <label for="displayName">Tên đăng nhập</label>
+                <div class="p-inputgroup">
+                  <input type="text" formControlName="displayName" id="displayName" pInputText placeholder="Tên đăng nhập"
+                         [ngClass]="{'is-invalid': submitted && f['displayName'].errors}"/>
+
+                  <div *ngIf="submitted && f['displayName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['displayName'].errors['required']">Bạn cần nhập tên đăng nhập</div>
+                    <div *ngIf="f['displayName'].errors['minlength']">Tên đăng nhập cần tối thiểu 3 kí tự </div>
+                    <div *ngIf="f['displayName'].errors['maxlength']">Tên đăng nhập có tối đa 20 kí tự</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Địa chỉ email</label>
+                <div class="p-inputgroup">
+                  <input type="email" formControlName="email" id="email" pInputText placeholder="Nhập địa chỉ email"
+                         [ngClass]="{'is-invalid': submitted && f['email'].errors}"/>
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Bạn cần nhập thông tin email</div>
+                    <div *ngIf="f['email'].errors['email']">Thông tin email không hợp lệ</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="p-inputgroup">
+                  <input [type]="pss" formControlName="password" id="password" pInputText placeholder="Nhập mật khẩu"
+                         [ngClass]="{'is-invalid': submitted && f['password'].errors}"/>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Bạn cần nhập mật khẩu</div>
+                    <div *ngIf="f['password'].errors['password']">Mật khẩu không hợp lệ</div>
+                  </div>
+                  <i class="pi pi-eye-slash eye" (click)="showPass()" *ngIf="hidden"></i>
+                  <i class="pi pi-eye eye" (click)="hiddenPass()" *ngIf="!hidden"></i>
+                </div>
+              </div>
+                <div class="form-group">
+                  <label for="matchingPassword">Xác nhận lại mật khẩu</label>
+                  <div class="p-inputgroup">
+                    <input [type]="pss" formControlName="matchingPassword" id="matchingPassword" pInputText placeholder="Xác nhận lại mật khẩu"
+                           [ngClass]="{'is-invalid': submitted && f['matchingPassword'].errors}"/>
+                    <div *ngIf="submitted && f['matchingPassword'].errors" class="invalid-feedback">
+                      <div *ngIf="f['matchingPassword'].errors['required']">Bạn cần xác nhận lại mật khẩu</div>
+                      <div *ngIf="f['matchingPassword'].errors['matching']">Mật khẩu đã nhập không khớp</div>
+                    </div>
+                    <i class="pi pi-eye-slash eye" (click)="showPass()" *ngIf="hidden"></i>
+                    <i class="pi pi-eye eye" (click)="hiddenPass()" *ngIf="!hidden"></i>
+                  </div>
+                </div>
+              <ns-button [label]="'Đăng ký'" [lWidth]="100" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'"></ns-button>
+            </form>
+            <a class="panel-footer" routerLink="/login">
+              Bạn đã có tài khoản? &nbsp;
+              <span>Đăng nhập</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+

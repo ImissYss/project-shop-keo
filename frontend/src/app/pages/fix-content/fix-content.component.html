@@ -1,0 +1,15 @@
+<div class="fixed-bottom contact" *ngIf="infoShop">
+  <a [href]="'tel:+84'+ infoShop.phone.slice(1)" target="_blank" class="contact-icon">
+    <i class="pi pi-phone" style="font-size: 2rem;"></i>
+  </a>
+  <a [href]="infoShop.linkFanpage" target="_blank" class="contact-icon">
+    <i  class="fab fa-facebook-f" style="font-size: 2rem"></i>
+  </a>
+  <a [href]="infoShop.linkMessage" target="_blank" class="contact-icon">
+    <i title="messenger" class="fab fa-facebook-messenger" style="font-size: 2rem"></i>
+  </a>
+  <a [href]="infoShop.linkGoogleMap" target="_blank" class="contact-icon">
+    <i class="pi pi-map-marker" style="font-size: 2rem"></i>
+  </a>
+</div>
+

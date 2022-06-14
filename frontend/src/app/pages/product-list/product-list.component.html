@@ -1,0 +1,25 @@
+<div>
+      <div class="container container--pall">
+        <div class="TpShop-list-product-header">
+          <div class="list-product-title">
+            <span class="list-title-content">{{title}}</span>
+          </div>
+        </div>
+        <div class="article__grid" >
+          <app-product-detail [productSame]="productSameDiv" class="article__item" [product]="product" *ngFor="let product of products | paginate: {itemsPerPage: pageSize,
+                  currentPage: page,totalItems: count}"></app-product-detail>
+        </div>
+        <div class="pagination" *ngIf="totalPages > 1">
+          <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+          ></pagination-controls>
+        </div>
+      </div>
+</div>
+
+
+
+

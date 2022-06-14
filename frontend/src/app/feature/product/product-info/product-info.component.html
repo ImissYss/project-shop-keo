@@ -1,0 +1,249 @@
+<app-spinner [spinner]="spinner"></app-spinner>
+  <div class="header-product-info">
+    <div class="returnBtn">
+      <i (click)="backToPreviousPage()" class="fa fa-arrow-left"></i>
+    </div>
+    <div class="searchBtn">
+      <i class="fa fa-cart-arrow-down" style="position: relative" >
+        <span class="totalItem">5</span>
+      </i>
+      <i class="fa fa-ellipsis-v" (click)="showBar()"></i>
+    </div>
+  </div>
+  <p-sidebar [(visible)]="visibleSidebarBottom" position="bottom" [baseZIndex]="100000" class="sid-bottom">
+    <app-sidebar-bottom></app-sidebar-bottom>
+  </p-sidebar>
+  <div class="carousel-image-product">
+    <owl-carousel-o [options]="customOptions2">
+      <ng-container *ngFor="let image of imagesProducts">
+        <ng-template carouselSlide>
+          <div class="img-div">
+            <app-seleton-loader [Cwidth]="100" [Cheight]="250" *ngIf="!loaded"></app-seleton-loader>
+            <img alt="image.url" *ngIf="loaded" [src]="image.url" style="max-width: 100%; height: auto; display: block">
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+
+  <app-header class="header"></app-header>
+  <div class="container container--pall">
+        <div class="path-url" *ngIf="breakCrumb">
+          <a routerLink="/">
+            <i class="pi pi-home" style="color: rgba(0,0,0,0.5)"></i>
+          </a>
+          <div *ngFor="let b of (breakCrumb.slice(0, breakCrumb.length-1));let i = index ">
+            <i class="pi pi-angle-right" style="margin-right: 5px; margin-left: 5px;"></i>
+            <span class="path route" (click)="routeProductOfCategory(b[0], b[1])">{{b[1]}}</span>
+          </div>
+          <div class="end-path">
+            <i class="pi pi-angle-right" style="margin-right: 5px; margin-left: 5px;"></i>
+            <span class="path" style="margin-right: 5px; margin-left: 5px; cursor: pointer" *ngIf="breakCrumb[2]">{{breakCrumb[2][1]}}</span>
+          </div>
+        </div>
+        <div class="tpshop_product" *ngIf="product">
+          <div class="tpshop_product-left">
+            <div class="tpshop_card_info">
+              <div class="product_image">
+                <div class="image">
+                  <div class="p_image">
+                    <app-seleton-loader [Cwidth]="100" [Cheight]="200" *ngIf="!loaded"></app-seleton-loader>
+                    <img alt="currImage.url" *ngIf="currImage && loaded" [src]="currImage.url" style="width: 100%; height: 100%"/>
+                  </div>
+                </div>
+                <div class="thumnel">
+                  <div class="list-thumnel">
+                    <div class="list-image-carousel">
+                      <owl-carousel-o [options]="customOptions">
+                        <ng-container *ngFor="let image of imagesProducts">
+                          <ng-template carouselSlide>
+                            <div class="carousel-image-item" (mouseover)="carouselImage(image.id)">
+                              <img alt="image.url" [src]="image.url" style="max-width: 100%; height: auto; display: block">
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="product_content" *ngIf="product">
+                <div class="product-name-tp">
+                  <h1 class="product-name">
+                    <font style="vertical-align: inherit">
+                      <font style="vertical-align: inherit">
+                        {{product.productName}}
+                      </font>
+                    </font>
+
+                  </h1>
+                </div>
+                <div class="product-rating-tp">
+                  <div class="rating-display">
+                    <div class="rating-number">
+                      <b class="p-mr-2">{{product.rating}}</b>
+                      <p-rating [readonly]="true" [cancel]="false" [iconOnStyle]="{'color': '#2E2E2E', 'font-size': '14px'}" [stars]="product.rating"></p-rating>
+                      <span class="rating-total-review">({{countRating}} đánh giá)</span>
+                    </div>
+                    <div class="favorite">
+                      <i class="pi pi-heart" style="font-size: 18px; color: #2e2e2e; cursor: pointer" (click)="likeProduct(product)" *ngIf="!heart"></i>
+                      <i class="fas fa-heart" style="font-size: 18px; color: #2e2e2e; cursor: pointer;color: #EE4D2D" ; *ngIf="heart"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <a class="login-tpshop" href routerLink="/dang-nhap" *ngIf="!tokenService.isLoggedIn()">
+                  <div class="icon-login-l">
+                    <i class="pi pi-lock" style="font-size: 36px; color: #2e2e2e"></i>
+                  </div>
+                  <div class="tpshop-login-text">
+                    Đăng nhập hoặc đăng ký để mua hàng và nhận
+                    thêm nhiều ưu đãi hấp dẫn dành riêng cho thành viên TPshop
+                  </div>
+                  <div class="icon-login-r">
+                    <i class="pi pi-chevron-right" style="color: #303846"></i>
+                  </div>
+                </a>
+                <div class="benefit-tpshop">
+                  <div class="tpshop-dashed">
+                    <ul>
+                      <li class="l">
+                        <span class="register">
+                          nhận ưu đãi
+                          <span class="noti_shop">lên đến 6% </span>
+                          khi đăng kí thành viên TPshop
+                        </span>
+                      </li>
+                      <li class="l">
+                        <span class="register">
+                          giảm
+                          <span class="noti_shop">1% </span>
+                          trên đơn hàng (tối thiểu 1000,000đ)
+                        </span>
+                      </li>
+                      <li class="l">
+                        <span class="register">
+                          không mất phí vận chuyển
+                        </span>
+                      </li>
+                      <li class="l">
+                        <span class="register">
+                          thanh toán khi nhận hàng
+                        </span>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+                <div class="price-tpshop">
+                  <div class="curr-price">
+                    <span class="c-price">{{product.productPrice - (product.discount * product.productPrice)/100 | currency: 'VND'}}</span>
+                    <span class="info-icon"><i class="fas fa-info-circle"></i></span>
+                  </div>
+                  <div class="old-price" *ngIf="product.discount > 0">
+                    <span class="old">
+                      {{product.productPrice | currency: 'VND'}}
+                    </span>
+                    <span style="margin-left: 1rem; margin-right: 1rem">|</span>
+                    <span class="discount"><b>Giảm {{product.discount}}%</b></span>
+                    <span class="tk">(tiết kiệm {{(product.productPrice * product.discount)/100 | currency: 'VND'}})</span>
+
+                  </div>
+                </div>
+                <div class="card-tpshop">
+                  <div class="card-l">
+                    <div class="down-btn" [attr.disabled]="minus" (click)="minusCount()" >-</div>
+                    <input type="text" class="in" [(ngModel)]="count"
+                           name="count" (change)="validateCount()"
+                           required
+                           min="1"
+                           [max]="product?.count!">
+                    <div class="down-btn" [attr.disabled]="plus" (click)="plusCount()">+</div>
+                    <span class="count-pd">({{product.count}} sản phẩm có sẵn)</span>
+                  </div>
+                  <div class="btn-gro">
+                    <ns-button [label]="'Mua ngay'" [cWidth]="150" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'" (click)="buyNow()"></ns-button>
+                    <ns-button [label]=" 'Giỏ hàng'" [cWidth]="150" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'" (click)="addToCart()"></ns-button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="banner-tpshop">
+              <a href="#">
+                <img alt="banner" src="../../../../assets/images/banner/banner-product-info.jpg" style="width: 100%; height: 100%"/>
+              </a>
+            </div>
+
+            <div class="card">
+              <p-tabView >
+                <p-tabPanel header="MÔ TẢ">
+                  <div *ngIf="product">
+                    <p [innerHTML]="product.productDescription"></p>
+                  </div>
+
+                </p-tabPanel>
+                <p-tabPanel header="THÔNG TIN">
+                  <div class="info-p">
+                    <div [innerHTML]="product.information">
+                    </div>
+                  </div>
+                </p-tabPanel>
+
+              </p-tabView>
+            </div>
+          </div>
+          <div class="tpshop_product-right">
+            <div class="header-r">
+              <div class="header-news">
+                <div class="header-text" routerLink="/tin-tuc">Đến bảng tin xem hướng dẫn</div>
+              </div>
+            </div>
+            <div class="product-relation">
+              <div class="list-product-relation">
+                <div class="header-relation">
+                  <div class="header-title">Sản phẩm liên quan</div>
+                </div>
+                <div class="list-item-pr">
+                  <div class="seminal-product-panel" *ngFor="let product of productSame">
+                    <div class="data-product" >
+                      <div class="loading-product">
+
+                      </div>
+                      <div class="product-header">
+                        <div class="image-pr">
+                          <a [routerLink]="'/san-pham/' + this.categoryService.custom(product.productName) + '/' + product.productId" class="link-pr-detail">
+                            <img alt="product.urlImage" [src]="product.urlImage" style="max-width: 100%; max-height: 100%; vertical-align: middle">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="product-body">
+                        <div class="pr-info">
+                          <a [routerLink]="'/san-pham/' + this.categoryService.custom(product.productName) + '/' + product.productId" class="link-pr">{{product.productName}}</a>
+                        </div>
+                        <div class="pr-price">
+                          <span class="p-price">{{product.productPrice | currency: 'VND'}}</span>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+

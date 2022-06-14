@@ -1,0 +1,196 @@
+<!--Slide bar mobile-->
+<div id="ssc" *ngIf="show">
+  <i class="pi pi-bars icon-bar" (click)="sideBar()" id="bar" ></i>
+  <div class="i-p">
+    <span class="p-input-icon-left">
+    <i class="pi pi-search icon-search"></i>
+    <input (keyup.enter)="searchProduct()" type="text" class="searchbar-input" placeholder="Tìm sản phẩm, danh mục..." [(ngModel)]="search" />
+  </span>
+  </div>
+
+  <a href routerLink="/gio-hang-cua-ban">
+    <ns-badges [icons]="'fas fa-shopping-cart'" [count]="numberProductOfCart" style="margin-right: 5px"></ns-badges>
+  </a>
+</div>
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="baseIndex" class="sidebar" id="side">
+  <app-sidebar [listCategory]="listCategory" [infoShop]="infoShop"></app-sidebar>
+</p-sidebar>
+<header class="header">
+    <div class="container container--pall flex flex-jc-sb flex-ai-c">
+      <div class="navbar-tpShop-l-mobile">
+        <i class=" pi pi-bars p-mr-2" style="color: rgba(0,0,0,0.6);" (click)="sideBar()" id="bar" ></i>
+      </div>
+      <a href="https://tpshop-keo-nhap-khau.herokuapp.com" class="logo">
+        <img src="assets/images/cxz.png" alt="logo" style="margin-top: 5px; width: 200px"/>
+      </a>
+      <div class="search-bar">
+            <div class="searchbar-input-wrap">
+              <i class="pi pi-search icons-search"></i>
+              <input id="search" (keyup.enter)="searchProduct()" (keyup)="loadAllCategory()" class="searchbar-input" name="search" [(ngModel)]="search"
+                     (click)="openDropDown($event)" type="text" placeholder="Tìm sản phẩm, danh mục...">
+              <div class="state-container-dropdown" *ngIf="showDropdown" >
+                <div class="category-name" *ngFor="let category of categoriesSearch.slice(0, 3) | filterPipe: search">
+                  <i class="fas fa-history icons"></i>
+                  <div style="cursor: pointer" class="name" (click)="routeProductOfCategory(category.categoryId, category.categoryName)">{{category.categoryName}}</div>
+                  <i id="deleteSearchItem" style="cursor: pointer" class="pi pi-times" (click)="hiddenCategoryName(category.categoryId)"></i>
+                </div>
+                <div class="seemore" *ngIf="showSeemorebtn">
+                  <span id="see" style="font-size: 12px; color: #1A94FF; cursor: pointer; line-height: 1.67" (click)="seeMore($event)">Xem thêm</span>
+                  <i id="see1" class="pi pi-angle-down" style="color: rgba(0,0,0,0.5); cursor: pointer; margin-left: 2px" (click)="seeMore($event)"></i>
+                </div>
+                <div *ngIf="seemore">
+                  <div class="category-name" *ngFor="let category of categoriesSearch.slice( 3) | filterPipe: search">
+                    <i class="fas fa-history icons"></i>
+                    <div style="cursor: pointer" class="name" (click)="routeProductOfCategory(category.categoryId, category.categoryName)">{{category.categoryName}}</div>
+                    <i id="deleteSearchItem2" style="cursor: pointer" class="pi pi-times" (click)="hiddenCategoryName(category.categoryId)" ></i>
+                  </div>
+                </div>
+                <div class="seemore" *ngIf="showCollapsebtn">
+                  <span id="see2" style="font-size: 12px; color: #1A94FF; cursor: pointer; line-height: 1.67" (click)="collapse($event)">Thu gọn</span>
+                  <i id="see3" class="pi pi-angle-up" style="color: rgba(0,0,0,0.5); cursor: pointer; margin-left: 2px" (click)="collapse($event)"></i>
+                </div>
+                <div class="hot-keyWord" *ngIf="showCategoryHot">
+                  <div class="wrap-header">
+                    <img alt="hot-keyword" src="../../../assets/images/hot-keyWord.png" style="width: 24px; height: 24px; margin-right: 8px"/>
+                    <div>Tìm kiếm phổ biến</div>
+                  </div>
+                  <div class="inner" *ngIf="sixProduct$">
+                    <a href (click)="scrollTop(product.productName, product.productId)" class="category-link" *ngFor="let product of sixProduct$|async">
+                      <img alt="product.productName" [title]="product.imageProducts[0].name" [src]="product.imageProducts[0].url" style="width: 38px; height: 38px; margin-right: 8px; object-fit: contain; max-width: 100%">
+                      <span class="title">{{product.productName}}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="search-button">
+
+              </div>
+
+            </div>
+          </div>
+      <div style="margin-left: 10px">
+        <div class="flex flex-jc-sb flex-ai-c" (mouseleave)="leave()">
+              <div class="cart-icon" style="margin-right: 10px">
+                <a href routerLink="/gio-hang-cua-ban" class="nav-link" style="position: relative">
+                  <ns-badges [icons]="'fas fa-shopping-cart'" [count]="numberProductOfCart" (mouseover)="over()"></ns-badges>
+                  <div class="cart-direct" *ngIf="viewCart">
+                    <div class="header-cart">Sản phẩm mới thêm</div>
+                    <div class="product-of-cart" *ngFor="let product of products">
+                      <div class="img">
+                        <img alt="product.productName" [src]="product.imageProducts" style="width: 100%; height: auto; display: block">
+                      </div>
+                      <div class="product-name">
+                        <div class="v-center">
+                          <div class="name">{{product.productName}}</div>
+                          <div class="price">
+                            <div class="pr">₫{{product.productPrice}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cart-null" *ngIf="(this.numberProductOfCart == '0') || !this.login.isLoggedIn()">
+                      <img alt="gio-hang-rong" src="../../../assets/images/cart-null.png" style="width: 78px; height: 78px">
+                      <div class="null-text">Bạn chưa thêm sản phẩm nào</div>
+                    </div>
+                    <div class="btn-cart">
+                      <div class="space-wrapper"></div>
+                      <a class="btn-direct" href routerLink="/gio-hang-cua-ban" *ngIf="products && products.length > 0 && this.numberProductOfCart != '0'">Xem giỏ hàng</a>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div routerLink="/login" *ngIf="!login.isLoggedIn()" class="button">Đăng nhập</div>
+              <div class="main-user" (mouseover)="overUserAction()" (mouseleave)="leaveUserAction()" *ngIf="login.isLoggedIn()">
+                <div class="userName" *ngIf="login.isLoggedIn()">
+                  {{login.getUser().displayName}}
+                  <div class="user-action" *ngIf="viewUserAction">
+                    <a class="action" (click)="goProfile()">
+                      <div class="action-link">
+                        <span class="action-text">Tài khoản của tôi</span>
+                      </div>
+                    </a>
+                    <a class="action" (click)="goListOrder()">
+                      <div class="action-link">
+                        <span class="action-text">Đơn mua</span>
+                      </div>
+                    </a>
+                    <a class="action" href="" (click)="logout()">
+                      <div class="action-link">
+                        <span class="action-text" >Đăng xuất</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </header>
+  <div class="root-b" style="border-top: 1px solid black; border-bottom: 1px solid black">
+      <div class="container container--pall flex flex-jc-sb flex-ai-c " style="position: relative">
+        <div class="footer-banner">
+          <i class="pi pi-bars" style="margin-right: 10px; cursor: pointer" id="cate"></i>
+          <span id="cate1" style="cursor: pointer" class="title-footer">Danh mục</span>
+        </div>
+        <div class="substract"></div>
+        <div class="footer-banner" routerLink="/">
+          <span  class="title-footer">Trang chủ</span>
+        </div>
+        <div class="substract"></div>
+        <div class="footer-banner" routerLink="/huong-dan-mua-hang">
+          <span class="title-footer">Hướng dẫn mua hàng</span>
+        </div>
+        <div class="substract"></div>
+        <div class="footer-banner" routerLink="/ket-noi-voi-shop">
+          <span class="title-footer">Kết nối với shop</span>
+        </div>
+        <div class="substract"></div>
+        <div class="footer-banner" routerLink="/chinh-sach-bao-hanh-doi-tra">
+          <span class="title-footer">Chính sách bảo hành</span>
+        </div>
+
+        <div class="list-category" *ngIf="showCate" id="li-ca">
+          <div class="category-parent">
+            <div class="category-list-v1">
+              <div class="category-item">
+                <span>Danh mục sản phẩm</span>
+              </div>
+              <div (click)="routeProductOfCategory(category.categoryId, category.categoryName)" [class]="state === category.categoryId? 'item-active': 'item-non-active'" (mouseover)="over2(category.categoryId)"
+                   *ngFor="let category of categoriesSearch">
+                <i class="pi pi-bookmark icon-l"></i>
+                <span class="cate-name">{{category.categoryName}}</span>
+                <i class="pi pi-angle-right icon-r"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-in-category">
+            <div class="content-cp">
+              <div class="child-cate-list">
+                <div class="title-child-cate" *ngFor="let childCate of childCategory">
+                  <div class="title-cate">
+                    <a style="cursor: pointer" (click)="routeProductOfCategory(childCate.categoryId, childCate.categoryName)" class="second-category">
+                  <span class="second-category-text">
+                    {{childCate.categoryName}}
+                  </span>
+                      <i class="pi pi-angle-right" style="margin-top: 4px"></i>
+                    </a>
+                  </div>
+                  <div class="third-category-list">
+                    <a href [routerLink]="'/san-pham/' + categoryService.custom(product.productName) + '/' + product.productId" class="third-category" *ngFor="let product of childCate.productInfos" >
+                      <span class="third-category-text">{{product.productName}}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+
+
+

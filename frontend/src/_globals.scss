@@ -1,0 +1,126 @@
+@import "mixins";
+@import "variables";
+html{
+  font-size: 100%;
+  box-sizing: border-box;
+}
+*,*::before, *::after{
+  box-sizing: inherit;
+}
+body{
+  margin: 0;
+  padding: 0;
+  font-size: $font-sm;
+  color: $grayishBlue;
+  line-height: 1.3;
+  font-family: "Helvetica Neue";
+  @include breakpoint-up(large){
+    font-size: $font-lg!important;
+  }
+  &.noscroll{
+    overflow: hidden;
+  }
+}
+h1, h2, h3{
+  margin-top: 0px;
+  font-size: 1.5rem;
+}
+
+a,a:visited,a:hover{
+  text-decoration: none;
+  color: $grayishBlue;
+}
+//flex box
+.flex{
+  display: flex;
+  flex-direction: row;
+  &-jc-sb{
+    justify-content: space-between;
+  }
+  &-jc-c{
+    justify-content: center;
+  }
+  &-ai-c{
+    align-items: center;
+  }
+}
+
+//buttons
+button, .button{
+  display: inline-block;
+  padding: 0.875rem 1.875rem;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(72,72,164,1) 100%, rgba(0,212,255,1) 100%);
+  color: $white!important;
+  font-weight: 700;
+  border: oldlace;
+  font-size: $font-sm;
+  transition: opacity 300ms ease-in-out;
+
+  &:hover{
+    opacity: 0.75;
+  }
+  @include breakpoint-down(small){
+    margin-bottom: 5px;
+  }
+
+
+}
+//Visibility
+.hide-for-mobile{
+  @include breakpoint-down(medium){
+    display: none
+  }
+}
+.hide-for-desktop{
+  @include breakpoint-up(large){
+    display: none
+  }
+}
+.container{
+  max-width: 69.375rem;
+  margin: 0 auto;
+  &--pall {
+    padding: 0rem 0.5rem;
+    @include breakpoint-up(large) {
+      //padding-top: 1rem;
+      //padding-bottom: 1rem;
+      //padding-bottom: 6rem;
+    }
+  }
+  &--py {
+    padding-top: 4.375rem;
+    padding-bottom: 4.375rem;
+
+    @include breakpoint-up(large) {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  &--px {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  &--pt {
+    padding-top: 4.375rem;
+
+    @include breakpoint-up(large) {
+      padding-top: 6rem;
+    }
+  }
+  &--pr {
+    padding-right: 1.5rem;
+  }
+  &--pb {
+    padding-bottom: 4.375rem;
+
+    @include breakpoint-up(large) {
+      padding-bottom: 6rem;
+    }
+  }
+  &--pl {
+    padding-left: 1.5rem;
+  }
+}
+

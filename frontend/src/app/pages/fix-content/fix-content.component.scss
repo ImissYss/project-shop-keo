@@ -1,0 +1,23 @@
+.contact{
+  background: #183153;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  .contact-icon{
+    width: 70px;
+    height: 60px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .contact{
+    display: none!important;
+  }
+}
+

@@ -1,0 +1,18 @@
+<div class="top-product-seller">
+  <div class="top-seller_header">
+    Top sản phẩm bán chạy
+  </div>
+  <a class="product-seller" href="#" *ngFor="let productSell of topSellerProduct">
+    <div class="item-card-seller">
+      <div class="item-card-image">
+        <img [src]="productSell.imageProducts[0].url" style="max-width: 100%; height: auto; display: block"/>
+      </div>
+      <div class="item-card-content">
+        <div class="item-product-name">{{productSell.productName}}</div>
+        <div class="item-product-price">{{productSell.productPrice | currency: 'VND'}}</div>
+      </div>
+    </div>
+  </a>
+
+
+</div>

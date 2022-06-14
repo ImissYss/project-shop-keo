@@ -1,0 +1,51 @@
+@import "src/variables";
+@import "src/mixins";
+.article{
+  &__image {
+    height: 12.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  &__text {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    color: $grayishBlue;
+
+    //@include breakpoint-up(medium) {
+    //  padding: 1.875rem 1.5625rem;
+    //}
+  }
+
+  &__author {
+    font-size: 0.625rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    display: -webkit-box;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+    color: rgba(0,0,0,0.68);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__description {
+    font-size: 1rem;
+    .old_price{
+      font-weight: 400;
+      margin-right: 5px;
+      font-size: 14px;
+      text-decoration-line: line-through;
+    }
+    .new_price{
+      font-weight: 700;
+      color: #EE4D2D;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<div class="header-login-mobile">
+  <i class="pi pi-arrow-left icons" (click)="returnViewPrev()"></i>
+  <div class="title-login" routerLink="/login">Đăng nhập</div>
+  <div class="divide">/</div>
+  <div class="title-register" routerLink="/dang-ky">Đăng ký</div>
+</div>
+<div class="bootstrap-wrapper root" style="background-color: #664986; min-height: 900px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 col-12 main">
+        <h1 class="logo">
+          <a href routerLink="/" class="link">TPShop</a>
+        </h1>
+        <div class="content">
+          <div class="panel">
+            <h2 class="h3">Đăng nhập bằng tài khoản </h2>
+            <form *ngIf="!isLoggedIn" (ngSubmit)="onSubmit()" [formGroup]="form">
+              <div class="alert alert-danger" *ngIf="isLoginFailed">{{errorMessage}}</div>
+              <div class="form-group">
+                <label for="email">Địa chỉ email</label>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="email" formControlName="email" id="email" pInputText placeholder="Nhập địa chỉ email"
+                         [ngClass]="{'is-invalid': submitted && f['email'].errors}"/>
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Bạn cần nhập thông tin email</div>
+                    <div *ngIf="f['email'].errors['email']">Thông tin email không hợp lệ</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                  <input [type]="pss" formControlName="password" id="password" pInputText placeholder="Nhập mật khẩu"
+                         [ngClass]="{'is-invalid': submitted && f['password'].errors}"/>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Bạn cần nhập mật khẩu</div>
+                    <div *ngIf="f['password'].errors['password']">Mật khẩu không hợp lệ</div>
+                  </div>
+                  <i class="pi pi-eye-slash eye" (click)="showPass()" *ngIf="hidden"></i>
+                  <i class="pi pi-eye eye" (click)="hiddenPass()" *ngIf="!hidden"></i>
+                </div>
+              </div>
+              <div class="forgot-pass">
+                <span class="forgot-text" routerLink="/quen-mat-khau">Quên mật khẩu?</span>
+              </div>
+              <ns-button [cType]="'submit'" [label]="'Đăng nhập'" [lWidth]="100" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'"></ns-button>
+              <div style="justify-content: center; display: flex; align-items: center; margin-top: 10px; color: rgba(0,0,0,0.68)">Hoặc</div>
+              <a href="{{googleURL}}"><p-chip label="Đăng nhập bằng tài khoản google" icon="pi pi-google" class="login-google"></p-chip></a>
+              <a href="{{googleURL}}"><p-chip label="Google" icon="pi pi-google" class="login-google-mobile"></p-chip></a>
+            </form>
+            <a class="panel-footer" routerLink="/dang-ky">
+              Bạn chưa có tài khoản? &nbsp;
+              <span>Đăng ký</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

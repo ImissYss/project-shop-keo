@@ -1,0 +1,90 @@
+@media only screen and (max-width: 450px) {
+  .info-body{
+    font-family: Helvetica Neue;
+    margin-left: 0!important;
+    padding: 0!important;
+    width: 100% !important;
+    box-shadow: 0.05px 0px 0 0.05px rgba(0,0,0,05%);
+    .body-content{
+      background: transparent!important;
+      box-shadow: 1px 0.05px 0.05px 1px rgba(0,0,0,0.5%) !important;
+      .title-content{
+        display: none!important;
+      }
+      .product-inorder{
+        .product-info{
+          padding-top: 10px!important;
+          width: 100% !important;
+          .body-link{
+            border-bottom: 0.05px solid rgba(0,0,0,0.05) !important;
+          }
+          .body-flex-start{
+            margin-left: 0!important;
+            padding-right: 0!important;
+            width: 100% !important;
+            .image-pro{
+              width: 20% !important;
+              border: none!important;
+              background: transparent!important;
+            }
+            .price-info{
+              width: 30% !important;
+              padding-top: 0!important;
+              text-align: center!important;
+              display: flex;
+              flex-direction: column!important;
+              justify-content: center!important;
+
+            }
+
+            .product-name-info{
+              flex: none!important;
+              width: 50% !important;
+              padding-left: 2px!important;
+              .name{
+                font-size: 14px!important;
+              }
+            }
+          }
+          .product-info-title{
+            justify-content: left!important;
+            .icon-ship{
+              display: none!important;
+            }
+            .date-order{
+              text-align: left;
+              width: 60% !important;
+              padding-left: 10px!important;
+              .oclock-icon{
+                margin-right: 3px;
+              }
+            }
+            .status-ship{
+              display: flex;
+              justify-content: flex-start!important;
+              width: 40% !important;
+              .result-status{
+                font-size: 14px!important;
+                line-height: 12px!important;
+
+              }
+            }
+          }
+          .total-price-order{
+            background: transparent!important;
+            padding-right: 10px!important;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+//@media only screen and (max-width: 350px) {
+//  .price-info{
+//    display: flex;
+//    flex-direction: column!important;
+//  }
+//}
+

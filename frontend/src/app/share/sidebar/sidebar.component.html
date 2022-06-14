@@ -1,0 +1,70 @@
+<div class="notLoggedIn" *ngIf="!this.login.isLoggedIn()">
+  <div class="btn1">
+    <ns-button routerLink="/login" [label]="'Đăng nhập'" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'" [cWidth]="150"></ns-button>
+  </div>
+  <div class="btn1">
+    <ns-button routerLink="/dang-ky" [label]="'Đăng ký'" [cHeight]="45" [cBorder]="22.5" [cBackground]="'#FFC107'" [cWidth]="150"></ns-button>
+  </div>
+</div>
+<div class="logged" *ngIf="this.login.isLoggedIn()">
+  <i class="pi pi-user icon-user"></i>
+  <span class="username">Xin chào, {{this.login.getUser().displayName}}</span>
+</div>
+<div class="body-sidebar">
+  <div class="category-sidebar">
+    <div class="title-sidebar">Danh mục sản phẩm</div>
+    <div class="side-body">
+      <div *ngFor="let category of listCategory" class="category-parent" (click)="routeProductOfCategory(category.categoryId, category.categoryName)">
+        <i class="pi pi-bookmark icons"></i>
+        {{category.categoryName}}
+      </div>
+    </div>
+  </div>
+  <div class="more-action">
+    <div class="more-info">
+      <i class="pi pi-home icons"></i>
+      <span>Trang chủ</span>
+    </div>
+    <div class="more-info" routerLink="/profileMobile">
+      <i class="pi pi-user icons"></i>
+      <span>Trang cá nhân</span>
+    </div>
+    <div class="more-info">
+      <i class="pi pi-inbox icons"></i>
+      <span routerLink="/ket-noi-voi-shop">Kết nối với shop</span>
+    </div>
+    <div class="more-info">
+      <i class="pi pi-bell icons"></i>
+      <span>Thông báo</span>
+    </div>
+    <div class="more-info" routerLink="/huong-dan-mua-hang">
+      <i class="pi pi-exclamation-circle icons"></i>
+      <span>Hướng dẫn mua hàng</span>
+    </div>
+    <div class="more-info" routerLink="/admin/dashboard" *ngIf="login.isLoggedIn() && this.isAdmin">
+      <i class="pi pi-exclamation-circle icons"></i>
+      <span>Admin</span>
+    </div>
+    <div class="more-info" (click)="logout()">
+      <i class="pi pi-sign-out icons"></i>
+      <span>Đăng xuất</span>
+    </div>
+  </div>
+</div>
+<div class="tpshop-phone">
+  <div class="title-phone">Hotline:</div>
+  <span class="phone" *ngIf="infoShop">{{infoShop.phone}}</span>
+</div>
+<div class="pau-active" *ngIf="infoShop">
+  <ul>
+    <li title="facebook"><a target="_blank" href routerLink="m.me/thucphamoishii"><i  class="fab fa-facebook-f" style="font-size: 25px"></i></a>
+    </li>
+    <li title="messenger"><a target="_blank" [href]="infoShop.linkFanpage"><i title="messenger" class="fab fa-facebook-messenger" style="font-size: 25px"></i></a>
+    </li>
+    <li title="zalo"><a target="_blank" [href]="infoShop.linkZalo"> <img src="../../../assets/images/zalo_icon.png" alt=""></a>
+    </li>
+    <li title="map"><a target="_blank" [href]="infoShop.linkMap">   <i class="fas fa-map-marker-alt" style="font-size: 25px"></i></a>
+    </li>
+  </ul>
+</div>
+

@@ -1,0 +1,138 @@
+<app-spinner [spinner]="spinner"></app-spinner>
+<div class="header-product-info">
+  <div class="returnBtn">
+    <i (click)="backToPreviousPage()" class="fa fa-arrow-left"></i>
+  </div>
+  <div class="searchBtn">
+    <i class="fa fa-cart-arrow-down" style="position: relative" >
+      <span class="totalItem">5</span>
+    </i>
+    <i class="fa fa-ellipsis-v" (click)="showBar()"></i>
+  </div>
+</div>
+  <p-sidebar [(visible)]="visibleSidebarBottom" position="bottom" [baseZIndex]="100000" class="sid-bottom">
+    <app-sidebar-bottom></app-sidebar-bottom>
+  </p-sidebar>
+
+  <app-header class="header"></app-header>
+
+  <div class="container container--pall view-body">
+        <!-- Hiển thị danh sách category parent  -->
+        <div class="carousel-category-parent" *ngIf="listCategoryChild ">
+          <div class="header-parent">
+<!--            {{listCategoryChild.categoryName}}--><span>Lọc theo danh mục</span>
+          </div>
+          <div class="container-fluid testimonial-group" style="background-color: #fff; ">
+            <div class="row text-center flex-nowrap" >
+              <div class="col-5">
+                <div (click)="filterTotalProduct()">
+                  <div [class]="state === '0'? 'card-activate': 'card-category'">
+                    <span class="categoryName">Tất cả</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5" *ngFor="let category of listCategoryChild" >
+                <div (click)="filterCategoryMobile(category.categoryId, category.categoryName)">
+                  <div [class]="state === category.categoryId? 'card-activate': 'card-category'" >
+                    <span class="categoryName">{{category.categoryName}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- tpShop-filter-mobile       -->
+        <div class="tpShop-filter-mobile" *ngIf="listCategoryChild">
+          <div class="tpShop-left">
+            <i class="pi pi-home" style="margin-right: 7px"></i>
+            <span style="margin-right: 3px">/</span>
+            <div class="category-name">
+              <span class="name-text">{{categoryNameCurr}}</span>
+              <span class="count-product-of-category">{{count}} sản phẩm</span>
+            </div>
+          </div>
+          <div class="tpShop-right">
+            <span style="margin-right: 5px; color: #000000ad">Sắp xếp theo</span>
+            <i class="pi pi-sort-alt" (click)="sortOption()"></i>
+            <p-sidebar [(visible)]="visibleSidebarSort" position="bottom" [baseZIndex]="10000" class="sid-bottom">
+              <div class="text-header-bar">
+                <div class="text-sort">Sắp xếp theo</div>
+                <div class="text-sort" (click)="sortProductMobile(option.value)" *ngFor="let option of stateOptionMobile">{{option.label}}</div>
+              </div>
+            </p-sidebar>
+          </div>
+        </div>
+        <!--  tpShop-filter-desktop      -->
+        <div class="tpShop-filter">
+          <div class="tpShop-filter-status">
+            <i class="fas fa-filter"></i>
+            <div class="tpShop-filter-status_text">Bộ lọc tìm kiếm</div>
+          </div>
+          <div class="tpShop-filter filter-category" *ngIf="listCategoryChild">
+            <div class="tpShop-filter-category_header">theo danh mục</div>
+            <div class="tpShop-filter-category_items">
+              <div class="p-field-checkbox" *ngFor="let category of listCategoryChild">
+                <p-checkbox class="ck" role="checkbox"  name="group1" [value]="category" (click)="filterCategory(category.categoryId)" inputId="ny"></p-checkbox>
+                <label for="ny">{{category.categoryName}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="tpShop-filter filter-category">
+            <div class="tpShop-filter-category_header">Khoảng giá</div>
+            <div class="tpShop-filter-price_range">
+              <div class="price-input">
+                <p-inputNumber  placeholder="₫ TỪ" [(ngModel)]="price1" mode="currency" currency="VND" locale="en-US"></p-inputNumber>
+              </div>
+              <div class="between">
+                <i class="pi pi-minus" style="color: rgba(0,0,0,0.26)"></i>
+              </div>
+              <div class="price-input">
+                <p-inputNumber class="price-input" placeholder="₫ ĐẾN" [(ngModel)]="price2" mode="currency" currency="VND" locale="en-US"></p-inputNumber>
+              </div>
+            </div>
+            <button aria-label="áp-dụng" class="save" (click)="filterPrice()">ÁP DỤNG</button>
+          </div>
+          <div class="tpShop-filter filter-category">
+
+          </div>
+        </div>
+        <div class="filter-result">
+          <div class="main">
+            <div class="main_header">
+              <i class="pi pi-filter"></i>
+              <span class="header_text">Kết quả tìm kiếm </span>
+            </div>
+            <div class="tpShop-sort-bar">
+              <span class="tpShop-sort-bar_label">Sắp xếp theo</span>
+              <div class="sort-by-option">
+                <p-selectButton aria-label="sắp-xếp-theo" [options]="stateOptions" [(ngModel)]="sortValue" (click)="sortProduct()" optionLabel="label" optionValue="value"></p-selectButton>
+                <div class="sort-by-options_option">
+                  <p-dropdown [options]="sortOptions" role="menuitem" aria-labelledby="lọc-theo-giá-sản-phẩm" [(ngModel)]="sortRice" (onChange)="sortPrice()" placeholder="Giá" autoHeight="false" [style]="{'height': '34px', 'line-height':'34px', 'align-items': 'center', 'width': '135px'}"></p-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="article__grid">
+              <app-product-detail class="article__item" *ngFor="let product of products | paginate: {itemsPerPage: pageSize,
+                  currentPage: page,totalItems: count}" [product]="product"></app-product-detail>
+            </div>
+            <div class="pagination" *ngIf="totalPages > 1">
+              <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                [responsive]="true"
+                (pageChange)="handlePageChange($event)"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+

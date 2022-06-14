@@ -1,0 +1,159 @@
+@import "src/mixins";
+.header{
+  display: none;
+  @include breakpoint-up(large){
+    display: block;
+  }
+}
+.main{
+  color: #2e2e2e;
+  .home-icon{
+    display: none;
+  }
+  .title-card{
+    padding: 10px;
+    color: #2e2e2e;
+    font-weight: 500;
+  }
+  .card-body{
+    .header-card{
+      display: flex;
+      padding: 5px 10px;
+      .title-header{
+        margin-left: 10px;
+      }
+    }
+  }
+  .card-product{
+    position: relative;
+    .product-info{
+      padding: 16px 0;
+      .row-product{
+        display: flex;
+        flex-direction: row;
+        .image-product{
+          //.img{
+          //  width: 100px;
+          //}
+          display: flex;
+          flex-direction: row;
+          width: 36%;
+          @include breakpoint-up(large){
+            width: 20%;
+          }
+          margin-left: 10px;
+        }
+        .infor-price{
+          display: flex;
+          flex-direction: column;
+          @include breakpoint-up(large){
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          width: 55%;
+          .title-image{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            .text-image{
+              line-height: 16px;
+              color: #000;
+              margin-bottom: 5px;
+              font-width: 700;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+            }
+            .price-product{
+              .old-price{
+                text-decoration: line-through;
+                margin-right: 10px;
+              }
+            }
+          }
+          .quatity-product{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            .btn{
+              cursor: pointer;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid rgba(0,0,0,0.09);
+              background: transparent;
+              width: 32px;
+              height: 32px;
+              display: flex;
+            }
+            .in{
+              width: 64px;
+              height: 32px;
+              border: 1px solid rgba(0,0,0,0.09);
+              text-align: center;
+              cursor: text;
+            }
+          }
+          .price{
+            color: #000;
+            font-weight: 700;
+          }
+        }
+        .action{
+          width: 13%;
+          align-items: flex-start;
+          position: relative;
+          .icon-delete{
+            position: absolute;
+            right: 15px;
+          }
+        }
+      }
+    }
+  }
+  .footer-card{
+    @include breakpoint-up(large){
+      display: flex;
+      justify-content: flex-end;
+    }
+    .payment{
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+      @include breakpoint-up(large){
+        width: 35%;
+      }
+      .total-price{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #2e2e2e;
+        text-align: center;
+        padding: 15px;
+        .total{
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+:host::ng-deep{
+  .pi{
+    color: #2e2e2e;
+  }
+  .p-button.p-button-rounded{
+    border-radius: 2rem;
+  }
+}
+.home-icon-mobile{
+  @include breakpoint-up(large){
+    display: none;
+  }
+}
+.title_header_cart{
+  margin-left: 10px;
+  font-weight: 700;
+  @include breakpoint-up(large){
+    margin-left: 0;
+  }
+}

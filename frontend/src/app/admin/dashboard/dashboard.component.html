@@ -1,0 +1,24 @@
+<div class="side-bar">
+  <app-slidebar (nonActive)="disActive()" [active]="active"></app-slidebar>
+  <!-- main -->
+  <div [class]="active? 'header active': 'header'">
+    <div class="topbar">
+      <div class="toggle">
+        <i class="pi pi-bars" style="font-size: 1.5rem" (click)="toggle()"></i>
+      </div>
+      <!-- search -->
+      <div class="search">
+        <label>
+          <input type="text" placeholder="Search here">
+          <i class="pi pi-search"></i>
+        </label>
+      </div>
+      <!-- user img -->
+      <div class="user">
+        <img src="assets/images/avatar/avatar-admin.gif" style="width: 100%; height: 100%; border-radius: 50%"/>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

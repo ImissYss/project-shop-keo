@@ -1,0 +1,30 @@
+<div class="search-header">
+  <div class="search-header-title">
+    <span class="title">{{title}}</span>
+  </div>
+  <div class="search-content-result">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let product of topSearchProducts">
+        <ng-template carouselSlide>
+          <a [routerLink]="'/san-pham/' + categoryService.custom(product.productName) + '/' + product.productId" class="top-product-link" *ngIf="viewCarousel1 ">
+            <div class="item-image-wrap">
+              <img [alt]="product.imageName" [title]="product.imageName" [srcLazy]="product.urlImage" src="assets/images/lazyimg.jpg" style="max-width: 100%; height: auto; display: block" appLazyLoadImage>
+            </div>
+
+            <div class="item-title">
+              <span class="title-text">{{product.productName}}</span>
+            </div>
+
+            <div class="item-price">
+              <span>{{product.productPrice | currency: 'VND'}}</span>
+            </div>
+          </a>
+          <app-product-detail [product]="product" *ngIf="!viewCarousel1" [productSame]="productSameDiv" [viewCount]="viewCount"></app-product-detail>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</div>
+
+
+

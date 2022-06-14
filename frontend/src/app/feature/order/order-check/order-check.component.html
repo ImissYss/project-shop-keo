@@ -1,0 +1,95 @@
+<div class="header-product-info">
+  <div class="returnBtn">
+    <i (click)="backToPreviousPage()" class="fa fa-arrow-left"></i>
+  </div>
+  <div class="searchBtn">
+    <i class="fa fa-cart-arrow-down" style="position: relative" >
+      <span class="totalItem">5</span>
+    </i>
+    <i class="fa fa-ellipsis-v" (click)="showBar()"></i>
+  </div>
+</div>
+  <p-sidebar [(visible)]="visibleSidebarBottom" position="bottom" [baseZIndex]="100000" class="sid-bottom">
+    <app-sidebar-bottom></app-sidebar-bottom>
+  </p-sidebar>
+  <app-header class="header"></app-header>
+  <div class="container container--pall main" style="display: block;">
+    <div class="title-order">
+          <a href="" class="tpshop">TPShop</a>
+          <div class="logo-content">Thanh toán</div>
+        </div>
+    <div class="info-address">
+          <div class="address-title">
+            <div class="title">
+              <i class="pi pi-map-marker" style="margin-right: 10px;"></i>
+              <div>Địa chỉ nhận hàng</div>
+
+            </div>
+            <ns-button [cType]="'button'" (click)="addAddress()" [label]="'Thêm địa chỉ'" [cWidth]="150" [cHeight]="45" [cBackground]="'#FFC107'"></ns-button>
+          </div>
+          <div class="address-content" *ngFor="let address of addresses">
+            <!-- Lấy ra danh sách địa chỉ nhận hàng của user! -->
+            <div class="address-item">
+              <div class="p-field-radiobutton" >
+                <p-radioButton name="addressSelect" [(ngModel)]="addressSelect" [value]="address" [inputId]="address.username"></p-radioButton>
+                <label [for] = "address.username" class="p-label">
+                  <div class="user-phone">{{address.username}} {{address.phone}}</div>
+                  <div class="user-address">{{address.cdw}}, {{address.specificAdd}}</div>
+                </label>
+              </div>
+            </div>
+            <div class="edit-item" (click)="editAddress()">Thay đổi</div>
+          </div>
+        </div>
+    <div class="list-product-in-order">
+          <div class="title-table">
+            <div class="title-text">
+              <div class="product-content">
+                <div class="content-text">Sản phẩm</div>
+              </div>
+              <div class="product-content">Đơn giá</div>
+              <div class="product-content">Số lượng</div>
+              <div class="product-content last" >Thành tiền</div>
+            </div>
+
+          </div>
+          <div class="table-body">
+            <div class="item" *ngFor="let productInOrder of productInOrders">
+              <div class="item-flex">
+                <div class="item-name1">
+                  <div>
+                    <img [src]="productInOrder.imageProducts" style="width: 40px; height: 40px;"/>
+                  </div>
+                  <span style="margin-left: 5px;">{{productInOrder.productName}}</span>
+                </div>
+                <div class="price-total-items">
+                  <div class="price-item">
+                    <div class="price-o">{{productInOrder.productPrice - (productInOrder.productPrice*productInOrder.discount)/100 | currency : 'VND'}}</div>
+                    <div class="price-cu">(x{{productInOrder.count}})</div>
+                  </div>
+                  <div class="item-name2">{{(productInOrder.productPrice - (productInOrder.productPrice*productInOrder.discount)/100)*productInOrder.count | currency : 'VND'}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="total-price">
+            <div class="notifi">
+              <span class="text-notifi">Lời nhắn:</span>
+              <input type="text" placeholder="Lưu ý cho người bán..." class="notify-buyer"/>
+            </div>
+            <div class="total">
+              <div class="total-text">Tổng số tiền ({{productInOrders.length}} sản phẩm):</div>
+              <div class="total-number">{{total | currency : 'VND'}}</div>
+            </div>
+          </div>
+          <div class="btn-order">
+            <ns-button [cBackground]="'#FFC107'" [cType]="'button'" (click)="createOrder()" [label]="'Đặt hàng'" [cWidth]="150" [cHeight]="45"></ns-button>
+          </div>
+<!--          <ns-button class="btn-dat-hang-mobile" style="float: right; margin-top: 8px; margin-bottom: 20px" [cHeight]="45" [cBackground]="'#FFC107'" [cBorder]="22.5" [cType]="'button'" (click)="createOrder()" type="button" [label]="'Đặt hàng'" [cWidth]="150"></ns-button>-->
+        </div>
+  </div>
+
+<p-dialog [(visible)]="addressDialog" [modal]="true">
+  <app-add-address (closeDialog)="closeDialog()"></app-add-address>
+</p-dialog>
+

@@ -1,0 +1,20 @@
+.policy{
+  font-family: Helvetica Neue;
+  margin: 10px;
+  .policy-header{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .policy-body{
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid rgba(0,0,0,0.5);
+    padding: 10px;
+    color: rgba(0,0,0,0.68);
+    line-height: 24px;
+  }
+}
+.btn-policy{
+  margin: 10px;
+}

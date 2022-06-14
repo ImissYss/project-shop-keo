@@ -1,0 +1,65 @@
+<div [class]="active? 'navigator active': 'navigator'">
+  <ul>
+    <li>
+      <a href="">
+        <span class="icon"><i class="pi pi-apple "></i></span>
+        <span class="title">TP Shop</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/dashboard">
+        <span class="icon"><i class="pi pi-home "></i></span>
+        <span class="title">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/customer">
+        <span class="icon"><i class="pi pi-users"></i></span>
+        <span class="title">Khách hàng</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/listProduct">
+        <span class="icon"><i class="pi pi-book"></i></span>
+        <span class="title">Sản phẩm</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/managerOrder">
+        <span class="icon"><i class="pi pi-book"></i></span>
+        <span class="title">Đơn hàng</span>
+      </a>
+    </li>
+    <li>
+      <a href routerLink="/">
+        <span class="icon"><i class="pi pi-desktop"></i></span>
+        <span class="title">Trang chủ web</span>
+      </a>
+    </li>
+    <li>
+      <a href="">
+        <span class="icon"><i class="pi pi-comments"></i></span>
+        <span class="title">Thông báo</span>
+      </a>
+    </li>
+
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/addCategory">
+        <span class="icon"><i class="pi pi-exclamation-circle"></i></span>
+        <span class="title">Danh mục sp</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="disActive()" routerLink="/admin/thong-tin-shop">
+        <span class="icon"><i class="pi pi-cog"></i></span>
+        <span class="title">Thông tin shop</span>
+      </a>
+    </li>
+    <li>
+      <a href (click)="logout()">
+        <span class="icon"><i class="pi pi-sign-out"></i></span>
+        <span class="title">Đăng xuất</span>
+      </a>
+    </li>
+  </ul>
+</div>

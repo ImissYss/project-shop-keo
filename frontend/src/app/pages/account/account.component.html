@@ -1,0 +1,100 @@
+<div class="account-main">
+  <div class="account-body">
+    <div class="account-header">
+      <h1 class="header-title">Hồ sơ của tôi</h1>
+      <div class="footer-title">
+        Quản lý thông tin hồ sơ để bảo mật tài khoản
+      </div>
+      <!-- -->
+
+    </div>
+    <div class="account-content">
+      <div class="info-account-text">
+        <form>
+          <div class="property">
+            <div class="name-label">
+              Tên đăng nhập
+            </div>
+            <div class="name-text">
+              <div>{{user.displayName}}</div>
+            </div>
+          </div>
+          <div class="property">
+            <div class="name-label">
+              Email
+            </div>
+            <div class="name-text">
+              {{user.email}}
+            </div>
+          </div>
+          <div class="property">
+            <div class="name-label" style="padding-top: 5px">
+              Số điện thoại
+            </div>
+            <div class="name-text" *ngIf="user.phone">
+            {{user.phone}}
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-4" *ngIf="!user.phone" style="padding-top: 0!important; padding-bottom: 0!important;">
+              <p-inputMask mask="(999) 999-9999" [(ngModel)]="user.phone" placeholder="(+84) 999-9999"></p-inputMask>
+            </div>
+          </div>
+          <div class="property">
+            <div class="name-label" >
+              Giới tính
+            </div>
+            <div class="name-text">
+              <div class="p-field-radiobutton" *ngIf="!user.sex">
+                <p-radioButton name="female" value="FEMALE" [(ngModel)]="sex" inputId="female"></p-radioButton>
+                <label for="female" style="padding-top: 7px; margin-right: 5px">Nam</label>
+              </div>
+              <div class="p-field-radiobutton">
+                <p-radioButton name="male" value="MALE" [(ngModel)]="sex" inputId="male"></p-radioButton>
+                <label for="male" style="padding-top: 7px;">Nữ</label>
+              </div>
+            </div>
+<!--            -->
+
+            <div class="name-text" *ngIf="user.sex">
+              {{user.sex}}
+            </div>
+          </div>
+          <div class="property">
+            <div class="name-label" style="padding-top: 5px">
+              Ngày sinh
+            </div>
+            <div class="name-text" *ngIf="user.dateOfBirth">
+              {{user.dateOfBirth}}
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-4" *ngIf="!user.dateOfBirth" style="padding-top: 0!important; padding-bottom: 0!important;">
+              <p-inputMask mask="99/99/9999" [(ngModel)]="user.dateOfBirth" placeholder="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+            </div>
+          </div>
+          <div class="property">
+            <div class="name-label">
+            </div>
+            <div class="name-text">
+              <button type="submit" class="save-account">
+                Lưu
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="info-account-image">
+        <div class="avatar">
+          <div class="image-avatar"></div>
+          <div class="btn-add">
+            <button class="btn">Chọn ảnh</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

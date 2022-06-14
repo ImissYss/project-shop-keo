@@ -1,0 +1,44 @@
+@import "src/mixins";
+@import "src/variables";
+.main{
+  font-size: 14px;
+  font-family: Helvetica Neue;
+  .body-content{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    .contact{
+      width: 30%;
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .content{
+      width: 70%;
+      padding: 20px;
+      .name-title{
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        margin-left: 5px;
+      }
+      .date-update{
+        margin-top: 5px;
+        padding-left: 15px;
+        .date-number{
+          color: rgba(0,0,0,0.68);
+        }
+      }
+      .body-new{
+        margin-top: 5px;
+        box-shadow: 1px 0px 1px 1px rgba(0,0,0,5%);
+        min-height: 200px;
+      }
+    }
+  }
+}
+.header{
+  display: none;
+  @include breakpoint-up(large){
+    display: block;
+  }
+}
